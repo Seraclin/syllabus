@@ -137,18 +137,18 @@ if __name__ == '__main__':
     pdf_path = "SOC385Test.pdf"
     # Note: Camelot > PDFPlumber with default settings for tables. However, Camelot doesn't handle any non-table data
     print("====PDFPLUMBER====")
-    # extract_tables_from_pdf_plumber(pdf_path)
+    extract_tables_from_pdf_plumber(pdf_path)
     print("====CAMELOT====")
-    # extract_tables_from_pdf_camelot(pdf_path)
+    extract_tables_from_pdf_camelot(pdf_path)
     print("====PYMUPDF====")
     # Haven't figured out the table parameters yet....
     # Note: PyMuPDF can handle tables and format to HTML.
     # For text: https://pymupdf.readthedocs.io/en/latest/recipes-text.html#text
     # for tables: https://pymupdf.readthedocs.io/en/latest/page.html#Page.find_tables
 
-    # extract_text_from_pdf_pymupdf(pdf_path)
-    # extract_HTML_from_pdf_pymupdf(pdf_path)
-    # extract_tables_from_pdf_pymupdf(pdf_path)
+    extract_text_from_pdf_pymupdf(pdf_path)
+    extract_HTML_from_pdf_pymupdf(pdf_path)
+    extract_tables_from_pdf_pymupdf(pdf_path)
     extract_blocks_from_pdf_pymupdf(pdf_path)
 
     print("DONE")
