@@ -14,7 +14,7 @@ export default function Home() {
     <>
       <header className="title-bar">
         <h1 className='title-bar-text'>Master Syllabus (in progress)</h1>
-        <a href="https://github.com/Seraclin/syllabus">Github</a>
+        <a href="https://github.com/Seraclin/syllabus">About</a>
       </header>
       <p>TODO: Insert something cool here :)</p>
       <div>

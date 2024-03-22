@@ -35,7 +35,7 @@ input[type=submit] {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-left: 2rem;
+  margin: 4px 2rem;
 }
 
 input[type="submit"]:hover {
@@ -55,4 +55,25 @@ input[type="submit"]:hover {
   background-color: darkpurple;
 }
 
+.upload-progress-bar {
+  overflow: hidden; 
+  border: solid;
+  border-radius: 0.25rem; 
+  border-width: 1px; 
+  width: 15rem; 
+  height: 14px;
+  border-color: gray;
+  margin-top: 1rem;
+  margin-left: 1rem;
+
+}
+
+.upload-progress-bar-indicator {
+  height: 100%; 
+  background-color: purple; 
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms; 
+  transition-duration: 150ms; 
+}
 
