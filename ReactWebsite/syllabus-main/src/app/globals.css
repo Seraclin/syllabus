@@ -1,4 +1,11 @@
 /* Custom CSS for whole website goes below */
+html, body {
+  margin: 0;
+  padding: 0;
+}
+p {
+  margin-left: 1rem;
+}
 .title-bar {
   display: flex;
   justify-content: space-between;
@@ -11,16 +18,20 @@
 .upload-button-container {
   background-color: lightgray;
   padding: 1rem;
-  margin: 1rem;
+  margin-top: 1rem;
+  margin-left: 1rem;
+  margin-right: 5rem;
 }
 
 input[type="file"] {
   /* display: none; */
+  padding-left: 1rem;
 }
 
 input[type=submit] {
   background-color: green;
   color: white;
+  font-size: 20px;
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
