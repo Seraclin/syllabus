@@ -9,21 +9,24 @@ The default HTML file upload is kinda hard to customize directly, so you have to
 import { join } from 'path'
 import { useState, FormEvent } from 'react'
 
-export default function UploadButton() {
+export default function UploadButton() { // handle upload button behavior
   const [file, setFile] = useState(null)
   const [progress, setProgress] = useState(0) // loading bar
+  const [complete, setComplete] = useState(false) // check if completed, true = complete
 
   const onSubmit = async (e) => {
-    setProgress(0)
+    setProgress(0);
+    setComplete(false);
+
     // Requires client and API
     e.preventDefault()
     if(!file) {
       console.error("Error: no file provided")
-      return  // Error for no file added
+      return;  // Error for no file added
     }
     try {
       const data = new FormData()
-      data.set('file', file)
+      data.set('file', file);
 
       // XML HTTP requests to track progress
       const xhr = new XMLHttpRequest();
@@ -41,18 +44,23 @@ export default function UploadButton() {
     
       xhr.onload = async () => {
         if (xhr.status === 200) {
-          setFile(null); // Reset file after successful upload
+          // setFile(null); // Reset file after successful upload
+          console.log("Upload complete:", file.name)
+          // If we reach here, then everything should work
+          setProgress(100);
+          setComplete(true);
         } else {
           console.error('Error uploading file:', xhr.statusText);
           setProgress(0); // Reset progress on error
+          setComplete(false);
         }
       };
     
       xhr.onerror = () => {
         console.error('Network error occurred while uploading file');
         setProgress(0); // Reset progress on error
+        setComplete(false);
       };
-    
       xhr.send(data);
 
       /* // This uses HTML fetch instead of xhr, can't really do the loading that well
@@ -91,8 +99,16 @@ export default function UploadButton() {
     } catch (e) {
       // Handle errors here
       console.error(e)
-      setProgress(0)
+      setProgress(0);
+      setComplete(false);
     }
+  }
+
+  const handleFileChange = event => { // handle file selction button behavior
+    const selectedFile = event.target.files?.[0];
+    setFile(selectedFile);
+    setProgress(0); // Reset progress and complete state after file selection changes
+    setComplete(false);
   }
 
   // HTML for the upload button, only takes first pdf for now; Note: I edit the CSS of the input file button
@@ -102,17 +118,20 @@ export default function UploadButton() {
       <form onSubmit={onSubmit}>
         {/* <label htmlFor="file-upload" class="custom-file-upload"> Upload PDF</label> */}
         <input id="file-upload" type='file' accept='.pdf' name='file' 
-        onChange={(e) => setFile(e.target.files?.[0])}/>
+        onChange={handleFileChange}/>
         <input type='submit' value='Upload' />
       </form>
     </div>
 
-
-    <div className='upload-progress-bar'>
-      <div className='upload-progress-bar-indicator' 
-      style={{width:`${progress}%`}} />
+    <div className='upload-progress-bar-container'>
+      <div className='upload-progress-bar'>
+        <div className='upload-progress-bar-indicator' 
+        style={{width:`${progress}%`}} />
+      </div>
+      {complete && file ? (<p>Completed uploaded: {file.name}</p>) : (
+          file ? (<p>Selected file: {file.name}</p>) : (<p>No file selected</p>)
+      )}
     </div>
-    <p>Hello</p>
     </>
   )
 }

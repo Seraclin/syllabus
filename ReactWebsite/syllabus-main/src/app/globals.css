@@ -4,7 +4,7 @@ html, body {
   padding: 0;
 }
 p {
-  margin-left: 1rem;
+  margin: 0px 1rem;
 }
 .title-bar {
   display: flex;
@@ -14,12 +14,15 @@ p {
   padding: 1rem 2rem;
   background-color: rgb(235, 214, 255);
 }
+
+/* Upload button */
 .upload-button-container {
   background-color: lightgray;
   padding: 1rem;
   margin-top: 1rem;
   margin-left: 1rem;
   margin-right: 5rem;
+  margin-bottom: 1rem;
 }
 
 input[type="file"] {
@@ -53,6 +56,11 @@ input[type="submit"]:hover {
 
 .custom-file-upload:hover {
   background-color: darkpurple;
+}
+
+/* Upload progress */
+.upload-progress-bar-container {
+  margin: 2px;
 }
 
 .upload-progress-bar {
