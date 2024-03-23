@@ -16,7 +16,7 @@ export default function Home() {
         <h1 className='title-bar-text'>Master Syllabus (in progress)</h1>
         <a href="https://github.com/Seraclin/syllabus">About</a>
       </header>
-      <p>TODO: Insert something cool here :)</p>
+      <p>Please upload a PDF to get started. TODO: Insert something cool here :)</p>
       <div>
         <UploadButton />      
       </div>

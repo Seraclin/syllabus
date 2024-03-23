@@ -128,7 +128,7 @@ export default function UploadButton() { // handle upload button behavior
         <div className='upload-progress-bar-indicator' 
         style={{width:`${progress}%`}} />
       </div>
-      {complete && file ? (<p>Completed uploaded: {file.name}</p>) : (
+      {complete && file ? (<p>Completed upload: {file.name}</p>) : (
           file ? (<p>Selected file: {file.name}</p>) : (<p>No file selected</p>)
       )}
     </div>
