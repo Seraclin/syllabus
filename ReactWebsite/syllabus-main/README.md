@@ -13,6 +13,10 @@ pnpm dev
 # or
 bun dev
 ```
+Note: If next.js isn't installed already, make sure to run:
+```
+ npm install next@latest react@latest react-dom@latest
+```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
