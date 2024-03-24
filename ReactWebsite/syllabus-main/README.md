@@ -2,6 +2,11 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
+# THIS IS A NOTE FROM GIANLUIS HERE, I'LL BE TALKING ABOUT THE ISSUES I RAN INTO #
+Once you install node.js from this website (https://nodejs.org/en), go into your terminal and type:
+'npm install next@latest react@latest react-dom@latest'
+After doing so, you'll be able to run the website by typing npm run dev in your terminal
+
 First, run the development server:
 
 ```bash
