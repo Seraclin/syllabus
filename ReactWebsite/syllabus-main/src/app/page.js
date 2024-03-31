@@ -1,4 +1,5 @@
 /* The Homepage, view locally with npm run dev, delete .next folder locally if not working */
+import DownloadButton from "@/components/DownloadButton"
 import UploadButton from "@/components/UploadButton"
 export default function Home() {
   // const uploadFile = function(file) {
@@ -18,7 +19,8 @@ export default function Home() {
       </header>
       <p>Please upload a PDF to get started. TODO: Insert something cool here :)</p>
       <div>
-        <UploadButton />      
+        <UploadButton />
+        <DownloadButton fileName="test1.ics"/>
       </div>
     </>
   )

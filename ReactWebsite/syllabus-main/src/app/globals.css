@@ -85,3 +85,29 @@ input[type="submit"]:hover {
   transition-duration: 150ms; 
 }
 
+/* Download container (technically a href) */
+.download-container {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.download-container a {
+  display: inline-block;
+  background-color: purple;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.download-container a:active {
+  background-color: darkorchid;
+}
+
+.download-container a:hover {
+  background-color: darkorchid;
+}
+
+
