@@ -15,7 +15,7 @@ const CalendarEvent = () => {
     <div className="calendar-events">
         {calendarEvents.map((event, index) => (
         <div key={index} className="event-container">
-            <p className="event-title">Title: {event.title}</p>
+            <p className="event-title">{event.title}</p>
             <p className="event-start-date">Start Date: {event.start_date}</p>
             {event.end_date && <p className="event-end-date">End Date: {event.end_date}</p>}
             {event.location && <p className="event-location">Location: {event.location}</p>}
