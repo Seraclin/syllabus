@@ -1,6 +1,8 @@
 /* The Homepage, view locally with npm run dev, delete .next folder locally if not working */
-import DownloadButton from "@/components/DownloadButton"
 import UploadButton from "@/components/UploadButton"
+import CalendarEvent from "@/components/CalendarEvent"  // TODO delete this
+import DownloadButton from "@/components/DownloadButton"  // TODO edit this
+
 export default function Home() {
   // const uploadFile = function(file) {
   //   const test = file.target.files[0];
@@ -21,6 +23,7 @@ export default function Home() {
       <div>
         <UploadButton />
         <DownloadButton fileName="test1.ics"/>
+        <CalendarEvent></CalendarEvent>
       </div>
     </>
   )

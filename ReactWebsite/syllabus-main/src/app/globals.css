@@ -110,4 +110,42 @@ input[type="submit"]:hover {
   background-color: darkorchid;
 }
 
+/* Calendar events for previewing .ics files */
+.calendar-events {
+  max-width: 40rem; /* Adjust the max-width as needed */
+  margin: 0 0;
+  padding: 20px; /* Add padding around the container */
+  display: flex;
+  flex-direction: column;
+}
+
+.event-container {
+  background-color: rgb(209, 209, 209);
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+}
+
+.event-title {
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.event-details {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.event-start-date,
+.event-end-date,
+.event-location {
+  font-size: 18px;
+}
+
+.event-description {
+  font-size: 14px;
+}
+
 
