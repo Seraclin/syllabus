@@ -5,6 +5,14 @@ import fitz  # PyMuPDF: https://pymupdf.readthedocs.io/en/latest/the-basics.html
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import os
+from dotenv import load_dotenv
+
+from openai import OpenAI
+
+
+
+
 
 
 def extract_tables_from_pdf_plumber(pdf_path):
@@ -35,7 +43,7 @@ def extract_tables_from_pdf_plumber(pdf_path):
                 print(f"No tables found on Page {page_number + 1}")
 
 
-def extract_tables_from_pdf_camelot(pdf_path):
+def extract_tables_from_pdf_camelot(pdf_path): # TODO
     """Gets and exports to csv the pdf's tables using camelot-py
 
     Parameters
@@ -44,11 +52,21 @@ def extract_tables_from_pdf_camelot(pdf_path):
         The file location of the pdf
     """
     tables = camelot.read_pdf(pdf_path, pages='all', strip_text='\n')  # make sure to get rid of newlines
-    print(tables)
-    tables.export('camelot.csv', f='csv')
+    if len(tables) < 1: # Returns table if just one page
+        tables.export('camelot.csv', f='csv')
+        return tables
+    else: # Concatenates table vertically and returns the combined table (not exported to csv, will do that externally)
+        data_concat = pd.concat([tables[0].df, tables[1].df], axis=0) # Sets a baseline of concatenating 2
+        for i in range(2, len(tables)): # if less than 2, we skip this. If greater, we concatenate each one at a time (there might be a more efficient way)
+            # print(tables[i].df)
+            data_concat = pd.concat([data_concat, tables[i].df], axis=0)
+        # print(tables)
+        tables.export('camelot.csv', f='csv') # Kept this from original code, exports from tables (not data_concat), so there are multiple csv files
+        return data_concat
+        
 
 
-def extract_tables_from_pdf_pymupdf(pdf_path):
+def extract_tables_from_pdf_pymupdf(pdf_path): # TODO
     """Gets and exports to pandas dataframe the pdf's tables using pymupdf
 
     Parameters
@@ -58,8 +76,9 @@ def extract_tables_from_pdf_pymupdf(pdf_path):
     """
     doc = fitz.open(pdf_path)  # open a document
     outName = pdf_path + "_table.csv"
-    dataframes = []  # list of DataFrames per table fragment
+    # dataframes = []  # list of DataFrames per table fragment
     for page in doc:  # iterate over the pages
+        dataframes = []  # list of DataFrames per table fragment
         tabs = page.find_tables(strategy='lines', snap_tolerance=10)  # locate tables on page, by default goes by 'lines' but background images/colors can throw it off
         # snap_tolerance = how much y-distance between horizontal lines to be considered separate from each other. (e.g. tall table cells)
         if len(tabs.tables) == 0:  # no tables found?
@@ -67,10 +86,14 @@ def extract_tables_from_pdf_pymupdf(pdf_path):
         else:
             tab = tabs[0]  # assume fragment to be 1st table, TODO: account for multiple tables on one page
             dataframes.append(tab.to_pandas())  # append this DataFrame
+            df = pd.concat(dataframes)  # make concatenated DataFrame
+            df.to_csv(outName)
+            print(df)
 
-    df = pd.concat(dataframes)  # make concatenated DataFrame
-    df.to_csv(outName)
-    print(df)
+
+    # df = pd.concat(dataframes)  # make concatenated DataFrame
+    # df.to_csv(outName)
+    # print(df)
 
 
 
@@ -131,25 +154,86 @@ def extract_blocks_from_pdf_pymupdf(pdf_path):
         # out.write(bytes((12,)))  # write page delimiter (form feed 0x0C)
     # out.close()
 
-
+def read_csv_as_string(file_path):
+    with open(file_path, 'r', encoding='utf-8') as file:
+        csv_content = file.read()
+    return csv_content
 # Testing the performance of various pdf extraction libraries
 if __name__ == '__main__':
+    load_dotenv()
     pdf_path = "SOC385Test.pdf"
     # Note: Camelot > PDFPlumber with default settings for tables. However, Camelot doesn't handle any non-table data
     print("====PDFPLUMBER====")
-    extract_tables_from_pdf_plumber(pdf_path)
+    # extract_tables_from_pdf_plumber(pdf_path)
     print("====CAMELOT====")
-    extract_tables_from_pdf_camelot(pdf_path)
+    # extract_tables_from_pdf_camelot(pdf_path) # Try using this
     print("====PYMUPDF====")
     # Haven't figured out the table parameters yet....
     # Note: PyMuPDF can handle tables and format to HTML.
     # For text: https://pymupdf.readthedocs.io/en/latest/recipes-text.html#text
     # for tables: https://pymupdf.readthedocs.io/en/latest/page.html#Page.find_tables
 
-    extract_text_from_pdf_pymupdf(pdf_path)
-    extract_HTML_from_pdf_pymupdf(pdf_path)
-    extract_tables_from_pdf_pymupdf(pdf_path)
-    extract_blocks_from_pdf_pymupdf(pdf_path)
+    # extract_text_from_pdf_pymupdf(pdf_path)
+    # extract_HTML_from_pdf_pymupdf(pdf_path)
+    # extract_tables_from_pdf_pymupdf(pdf_path)
+    # extract_blocks_from_pdf_pymupdf(pdf_path)
+
+
+    tables = extract_tables_from_pdf_camelot(pdf_path)
+    print("==========SPACE==========")
+    print(tables)
+    tables.to_csv('camelot-concat.csv')
+
+    
+
+    # Example usage:
+    file_path = 'camelot-concat.csv'
+    csv_string = read_csv_as_string(file_path)
+    # test2 = read_csv_as_string("camelot-page-5-table-1.csv")
+    print("==========SPACE==========")
+    print("==========SPACE==========")
+    print("==========SPACE==========")
+    # print(csv_string) # TEST
+    # print(test2)
+    # csvfull = open('camelot-concat.csv', 'r')
+
+    # data = pd.read_csv("camelot-page-5-table-1.csv")
+    # print("space")
+    # print(data)
+    # print("space")
+    # print(tables[0].df)
+
+    client = OpenAI(
+    api_key = os.environ['OPENAI_API_KEY']
+    )
+
+    completion = client.chat.completions.create(
+      model="gpt-3.5-turbo",
+      messages=[
+        # {"role": "system", "content": "You are converting the provided text into a .ics file which generates an event for each multiple events"} ,# USE EITHER THIS OR THAT
+        # {"role": "system", "content": "Convert the following data into pairs containing date and event name. Then, using the data that was converted, turn the data into an ics file using the dates provided in the current year"},# USE EITHER THIS OR THAT
+        {"role": "system", "content": "You convert the following data into pairs containing date and event name"}, # . Then, using the data that was converted, turn the data into an ics file using the dates provided in the current year
+        {"role": "user", "content": "" + csv_string}
+      ]
+    )
+    print(completion.choices[0].message.content)
+
+    completion = client.chat.completions.create(
+      model="gpt-3.5-turbo",
+      messages=[
+        # {"role": "system", "content": "You are converting the provided text into a .ics file which generates an event for each multiple events"} ,# USE EITHER THIS OR THAT
+        # {"role": "system", "content": "Convert the following data into pairs containing date and event name. Then, using the data that was converted, turn the data into an ics file using the dates provided in the current year"},# USE EITHER THIS OR THAT
+        {"role": "system", "content": "You turn the data provided into an ics file using the dates provided in the current year of 2024"}, # . Then, using the data that was converted, turn the data into an ics file using the dates provided in the current year
+        {"role": "user", "content": "" + completion.choices[0].message.content}
+      ]
+    )
+
+    print(completion.choices[0].message.content)
+
+    gpt_output = open("gptoutput.ics", "w")
+    gpt_output.writelines(completion.choices[0].message.content)
+    gpt_output.close()
+    
 
     print("DONE")
 
