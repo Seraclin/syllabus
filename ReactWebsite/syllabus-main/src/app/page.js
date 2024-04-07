@@ -1,7 +1,7 @@
 /* The Homepage, view locally with npm run dev, delete .next folder locally if not working */
-import UploadButton from "@/components/UploadButton"
-import CalendarEvent from "@/components/CalendarEvent"  // TODO delete this
-import DownloadButton from "@/components/DownloadButton"  // TODO edit this
+import UploadButton from "@/src/components/UploadButton"
+import CalendarEvent from "@/src/components/CalendarEvent"  // TODO delete this
+import DownloadButton from "@/src/components/DownloadButton"  // TODO edit this
 
 export default function Home() {
   // const uploadFile = function(file) {
@@ -18,6 +18,7 @@ export default function Home() {
       <header className="title-bar">
         <h1 className='title-bar-text'>Master Syllabus (in progress)</h1>
         <a href="https://github.com/Seraclin/syllabus">About</a>
+        <button class="login-button">Login</button>
       </header>
       <p>Please upload a PDF to get started. TODO: Insert something cool here :)</p>
       <div>
