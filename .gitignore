@@ -35,3 +35,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 ReactWebsite/syllabus-main/src/app/api/gpt/key.js
+
+#for authentication:
+node_modules
+.next
