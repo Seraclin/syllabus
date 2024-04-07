@@ -1,134 +1,149 @@
 /* Custom CSS for whole website goes below */
+/* Custom CSS for the entire website goes below */
 html, body {
   margin: 0;
   padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f4f4;
 }
 p {
   margin: 0px 1rem;
+  line-height: 1.6;
+  text-align: center; /* Centering text */
 }
 .title-bar {
   display: flex;
-  justify-content: space-between;
+  justify-content: center; /* Centering the title */
   align-items: center;
   margin-bottom: 1rem;
   padding: 1rem 2rem;
-  background-color: rgb(235, 214, 255);
+  background-color: #7a6ff0;
+  color: white;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
 /* Upload button */
 .upload-button-container {
-  background-color: lightgray;
+  background-color: #e2e2e2;
   padding: 1rem;
-  margin-top: 1rem;
-  margin-left: 1rem;
-  margin-right: 5rem;
-  margin-bottom: 1rem;
+  margin: 1rem auto; /* Centering the container */
+  width: fit-content; /* Adjust width to content */
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  display: flex; /* Aligning items horizontally */
+  flex-direction: column; /* Stack children vertically */
+  align-items: center; /* Center-align children */
 }
 
 input[type="file"] {
-  /* display: none; */
   padding-left: 1rem;
 }
 
 input[type=submit] {
-  background-color: green;
+  background-color: #4CAF50;
   color: white;
-  font-size: 20px;
-  padding: 10px 20px;
+  font-size: 16px;
+  padding: 12px 24px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   margin: 4px 2rem;
+  transition: background-color 0.3s ease;
 }
 
 input[type="submit"]:hover {
-  background-color: darkslateblue !important;
+  background-color: #45a049;
 }
 
 .custom-file-upload {
-  background-color: purple;
+  background-color: #5e42a6;
   color: white;
-  padding: 10px 20px;
+  padding: 12px 24px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .custom-file-upload:hover {
-  background-color: darkpurple;
+  background-color: #4d359a;
 }
 
 /* Upload progress */
 .upload-progress-bar-container {
-  margin: 2px;
+  margin: 2px auto; /* Centering the container */
+  width: fit-content; /* Adjust width to content */
 }
 
 .upload-progress-bar {
   overflow: hidden; 
   border: solid;
-  border-radius: 0.25rem; 
+  border-radius: 5px; 
   border-width: 1px; 
   width: 15rem; 
   height: 14px;
-  border-color: gray;
+  border-color: #ccc;
   margin-top: 1rem;
-  margin-left: 1rem;
-
+  background-color: #e2e2e2;
 }
 
 .upload-progress-bar-indicator {
   height: 100%; 
-  background-color: purple; 
-  transition-property: all;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 300ms; 
-  transition-duration: 150ms; 
+  background-color: #5e42a6; 
+  transition: width 0.4s ease;
 }
 
 /* Download container (technically a href) */
 .download-container {
-  display: inline-block;
+  display: flex; /* Changed to flex to center the button */
+  justify-content: center; /* Centering the button horizontally */
   padding: 10px 20px;
   border-radius: 5px;
   text-decoration: none;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  margin: 0 auto; /* Centering the container */
 }
 
 .download-container a {
   display: inline-block;
-  background-color: purple;
+  background-color: #5e42a6;
   color: white;
   padding: 10px 20px;
   border-radius: 5px;
   text-decoration: none;
+  transition: background-color 0.3s ease;
 }
 
-.download-container a:active {
-  background-color: darkorchid;
-}
-
+.download-container a:active,
 .download-container a:hover {
-  background-color: darkorchid;
+  background-color: #4d359a;
 }
 
 /* Calendar events for previewing .ics files */
 .calendar-events {
-  max-width: 40rem; /* Adjust the max-width as needed */
-  margin: 0 0;
-  padding: 20px; /* Add padding around the container */
+  max-width: 40rem;
+  margin: 0 auto; /* Centering the container */
+  padding: 20px;
   display: flex;
   flex-direction: column;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  border-radius: 8px;
 }
 
 .event-container {
-  background-color: rgb(209, 209, 209);
+  background-color: #f9f9f9;
   padding: 20px;
   margin-bottom: 20px;
   border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
 .event-title {
   font-weight: bold;
   font-size: 24px;
+  color: #333;
+  text-align: center; /* Centering the title "Master syllabus" */
 }
 
 .event-details {
@@ -142,10 +157,11 @@ input[type="submit"]:hover {
 .event-end-date,
 .event-location {
   font-size: 18px;
+  color: #666;
 }
 
 .event-description {
   font-size: 14px;
+  color: #666;
 }
-
 
