@@ -3,6 +3,24 @@ html, body {
   margin: 0;
   padding: 0;
 }
+
+/* Position the login button */
+.login-button {
+  position: absolute;
+  top: 70px; /* Adjust the top value as needed */
+  right: 20px; /* Adjust the right value as needed */
+  background-color: green;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.login-button:hover {
+  background-color: darkgreen;
+}
+
 p {
   margin: 0px 1rem;
 }
@@ -17,7 +35,7 @@ p {
 
 /* Upload button */
 .upload-button-container {
-  background-color: lightgray;
+  background-color: whitesmoke;
   padding: 1rem;
   margin-top: 1rem;
   margin-left: 1rem;
@@ -47,6 +65,7 @@ input[type="submit"]:hover {
 
 .custom-file-upload {
   background-color: purple;
+  /* background-color: #cdb4db; */
   color: white;
   padding: 10px 20px;
   border: none;
