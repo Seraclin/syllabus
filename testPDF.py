@@ -223,7 +223,7 @@ if __name__ == '__main__':
       messages=[
         # {"role": "system", "content": "You are converting the provided text into a .ics file which generates an event for each multiple events"} ,# USE EITHER THIS OR THAT
         # {"role": "system", "content": "Convert the following data into pairs containing date and event name. Then, using the data that was converted, turn the data into an ics file using the dates provided in the current year"},# USE EITHER THIS OR THAT
-        {"role": "system", "content": "You turn the data provided into an ics file using the dates provided in the current year of 2024"}, # . Then, using the data that was converted, turn the data into an ics file using the dates provided in the current year
+        {"role": "system", "content": "You turn the data provided into an ics file using the dates provided in the current year of 2024 resulting in non repeating events"}, # . Then, using the data that was converted, turn the data into an ics file using the dates provided in the current year
         {"role": "user", "content": "" + completion.choices[0].message.content}
       ]
     )
