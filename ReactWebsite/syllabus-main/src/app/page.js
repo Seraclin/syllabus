@@ -16,10 +16,11 @@ export default function Home() {
   return (
     <>
       <header className="title-bar">
-        <h1 className='title-bar-text'>Master Syllabus (in progress)</h1>
+        <h1 className='title-bar-text'>eSyllabus</h1>
         <a href="https://github.com/Seraclin/syllabus">About</a>
+        <a href='/login/page.js'>Login</a>
       </header>
-      <p>Please upload a PDF to get started. TODO: Insert something cool here :)</p>
+      <p>Please upload a PDF to get started.</p>
       <div>
         <UploadButton />
         <DownloadButton fileName="test1.ics"/>
