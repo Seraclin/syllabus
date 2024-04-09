@@ -11,15 +11,25 @@ p {
   line-height: 1.6;
   text-align: center; /* Centering text */
 }
+
 .title-bar {
   display: flex;
-  justify-content: center; /* Centering the title */
+  justify-content: center; /* Center the content horizontally */
   align-items: center;
   margin-bottom: 1rem;
   padding: 1rem 2rem;
   background-color: #7a6ff0;
   color: white;
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.title-container {
+  flex: 1; /* Allow the title to grow and take up available space */
+  text-align: center; /* Center the text within its container */
+}
+
+.right-links {
+  margin-left: auto; /* Push the links to the rightmost side */
 }
 
 /* Upload button */

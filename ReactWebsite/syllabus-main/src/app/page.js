@@ -16,9 +16,13 @@ export default function Home() {
   return (
     <>
       <header className="title-bar">
-        <h1 className='title-bar-text'>eSyllabus</h1>
-        <a href="https://github.com/Seraclin/syllabus">About</a>
-        <a href='/login/page.js'>Login</a>
+        <div className="title-container">
+          <h1 className='title-bar-text'>eSyllabus</h1>
+        </div>
+        <div className="right-links">
+          <a href="https://github.com/Seraclin/syllabus" style={{ marginRight: '1rem' }}>About</a>
+          <a href='/login'>Login</a>
+        </div>
       </header>
       <p>Please upload a PDF to get started.</p>
       <div>

@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { getSession, login, logout } from "@/lib";
+import { getSession, login, logout } from "@/_utils/lib";
 
 export default async function Page() {
   const session = await getSession();
