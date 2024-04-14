@@ -1,5 +1,5 @@
 'use client'
-/* Upload button component for handling pdf documents.
+/* Upload button client component for handling pdf documents.
 You can import and reuse this component in page.js files. 
 By default, React/Nextjs14 uses server-side components and can store state directly (mimics the API), 
 but I use client-side with 'use client' and make an API for HTTP requests;
@@ -56,6 +56,7 @@ export default function UploadButton() { // handle upload button behavior
       // XML HTTP requests to track progress
       const xhr = new XMLHttpRequest();
       xhr.open('POST', '/api/upload', true);
+      xhr.withCredentials = true; // important for cookies!
 
       xhr.upload.onprogress = (event) => {
         if (event.lengthComputable) {

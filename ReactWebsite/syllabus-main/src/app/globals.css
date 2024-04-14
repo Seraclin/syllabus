@@ -81,11 +81,17 @@ input[type="submit"]:hover {
 
 /* Upload progress */
 .upload-progress-bar-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /*Center horizontally */
+  align-items: center; /* Center vertically */
   margin: 2px auto; /* Centering the container */
   width: fit-content; /* Adjust width to content */
 }
 
 .upload-progress-bar {
+  display: flex;
+  justify-content: flex-start;
   overflow: hidden; 
   border: solid;
   border-radius: 5px; 
