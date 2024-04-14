@@ -96,7 +96,7 @@ def extract_tables_from_pdf_pymupdf(pdf_path): # TODO
     # print(df)
 
 
-
+# Extracts the text from a PDF and puts it into a .txt file
 def extract_text_from_pdf_pymupdf(pdf_path):
     """Gets and exports to text the pdf's text using pymupdf.
     Note: The output will be plain text as it is coded in the document. No effort is made to prettify in any way.
@@ -116,6 +116,34 @@ def extract_text_from_pdf_pymupdf(pdf_path):
         out.write(bytes((12,)))  # write page delimiter (form feed 0x0C)
     out.close()
 
+def extract_page_from_pdf_pymupdf(pdf_path, name):
+    """Gets and exports to text the pdf's text using pymupdf.
+    Note: The output will be plain text as it is coded in the document. No effort is made to prettify in any way.
+    Specifically for PDF, this may mean output not in usual reading order, unexpected line breaks and so forth.
+
+    Parameters
+    ----------
+    pdf_path : str
+        The file location of the pdf
+
+    name : str
+        The new name you want the files to be
+        Format will be name_output_n.txt, where n is the page number
+    """
+    n = 1
+    doc = fitz.open(pdf_path)  # open a document
+    
+    for page in doc:  # iterate the document pages
+        outName = name + "_output_" + str(n) + ".txt"
+        out = open(outName, "wb")  # create a text output
+        text = page.get_text().encode("utf8")  # get plain text (is in UTF-8)
+        out.write(text)  # write text of page
+        out.write(bytes((12,)))  # write page delimiter (form feed 0x0C)
+        n = n + 1
+        out.close()
+
+
+# Probably don't use this one
 def extract_HTML_from_pdf_pymupdf(pdf_path):
     """Gets and exports to HTML the pdf's text using pymupdf.
     Note: struggles with images
@@ -124,6 +152,8 @@ def extract_HTML_from_pdf_pymupdf(pdf_path):
     ----------
     pdf_path : str
         The file location of the pdf
+
+    
     """
     doc = fitz.open(pdf_path)  # open a document
     outName = pdf_path+"_output.html"
@@ -154,19 +184,130 @@ def extract_blocks_from_pdf_pymupdf(pdf_path):
         # out.write(bytes((12,)))  # write page delimiter (form feed 0x0C)
     # out.close()
 
-def read_csv_as_string(file_path):
+def read_text_as_str(file_path):
     with open(file_path, 'r', encoding='utf-8') as file:
         csv_content = file.read()
     return csv_content
+
+
+def parse_pdf_as_text(pdf_path):
+    """Gets and puts into a list the text the pdf provided has using pymupdf.
+    Note: The output will be plain text as it is coded in the document. No effort is made to prettify in any way.
+    Specifically for PDF, this may mean output not in usual reading order, unexpected line breaks and so forth.
+
+    Parameters
+    ----------
+    pdf_path : str
+        The file location of the pdf
+
+    """
+    file_text = []
+    doc = fitz.open(pdf_path)  # open a document
+    for page in doc:  # iterate the document pages
+        file_text.append(page.get_text())
+    return file_text
+        
+
+# The first implementation of how we were calling ChatGPT. This only works if there are graphs present within the PDF
+def run_gpt(csv_string):
+
+    # Begins OpenAI Connection
+    client = OpenAI(
+        api_key = os.environ['OPENAI_API_KEY']
+    )
+
+    # Calls the first time where GPT parses the information into date and event pairs
+    # This is under the assumption that only calendar dates are extracted
+    completion = client.chat.completions.create(
+      model="gpt-3.5-turbo",
+      messages=[
+        {"role": "system", "content": "You convert the following data into pairs containing date and event name"},
+        {"role": "user", "content": "" + csv_string}
+      ]
+    )
+    print(completion.choices[0].message.content)
+
+    # Calls a second time where GPT parses what it just had parsed
+    completion = client.chat.completions.create(
+      model="gpt-3.5-turbo",
+      messages=[
+        {"role": "system", "content": "You turn the data provided into an ics file using the dates provided in the current year of 2024 resulting in non repeating events"},
+        {"role": "user", "content": "" + completion.choices[0].message.content}
+      ]
+    )
+
+    print(completion.choices[0].message.content)
+
+
+    # Outputs ics File
+    gpt_output = open("gptoutput.ics", "w")
+    gpt_output.writelines(completion.choices[0].message.content)
+    gpt_output.close()
+    
+
+    print("DONE")
+
+
+# newer implementation of GPT
+def run_gpt_broad(pdf_path):
+    """ Using GPT, we take each page of a pdf and ask it a couple of questions
+    1: Extract important dates 
+    
+
+    Parameters
+    ----------
+    pdf_path : str
+        The file location of the pdf
+
+    """
+
+    # Begins OpenAI Connection
+    client = OpenAI(
+        api_key = os.environ['OPENAI_API_KEY']
+    )
+
+    # Gets the pdf parsed as a string in a list with each index being a page
+    file_text = parse_pdf_as_text(pdf_path)
+    # n = len(file_text)
+
+
+    # Calls the first time where GPT parses the information into date and event pairs
+    # This is under the assumption that only calendar dates are extracted
+    parsed_events = []
+    for page in file_text
+        completion = client.chat.completions.create(
+        model="gpt-3.5-turbo",
+        messages=[
+            {"role": "system", "content": "Extract dates from the text following the specific format provided below. with in "
+            "The Event Type can only be Homework, Assessment, or Event"
+            "Date: -||-"
+            "Event Name: "
+
+            },
+            {"role": "user", "content": "" + page}
+        ]
+        )
+        parsed_events.append(completion.choices[0].message.content)
+        print(completion.choices[0].message.content)
+
+    # Need to parse entire PDF into a str while not exceeding the limits of OpenAI
+
+
+
+
+
 # Testing the performance of various pdf extraction libraries
 if __name__ == '__main__':
     load_dotenv()
     pdf_path = "SOC385Test.pdf"
+
     # Note: Camelot > PDFPlumber with default settings for tables. However, Camelot doesn't handle any non-table data
     print("====PDFPLUMBER====")
     # extract_tables_from_pdf_plumber(pdf_path)
+
     print("====CAMELOT====")
     # extract_tables_from_pdf_camelot(pdf_path) # Try using this
+
     print("====PYMUPDF====")
     # Haven't figured out the table parameters yet....
     # Note: PyMuPDF can handle tables and format to HTML.
@@ -174,26 +315,30 @@ if __name__ == '__main__':
     # for tables: https://pymupdf.readthedocs.io/en/latest/page.html#Page.find_tables
 
     # extract_text_from_pdf_pymupdf(pdf_path)
+    # extract_page_from_pdf_pymupdf(pdf_path)
+    # print(read_text_as_str("SOC385Test.pdf_output_1.txt"))
+    for i in parse_pdf_as_text(pdf_path):
+        print(i)
+        print("=====BREAK=====")
+
     # extract_HTML_from_pdf_pymupdf(pdf_path)
     # extract_tables_from_pdf_pymupdf(pdf_path)
     # extract_blocks_from_pdf_pymupdf(pdf_path)
 
 
-    tables = extract_tables_from_pdf_camelot(pdf_path)
-    print("==========SPACE==========")
-    print(tables)
-    tables.to_csv('camelot-concat.csv')
 
-    
+    # Example usage: This will run the code
+    # tables = extract_tables_from_pdf_camelot(pdf_path)
+    # print("==========SPACE==========")
+    # # print(tables)
+    # tables.to_csv('camelot-concat.csv')
+    # file_path = 'camelot-concat.csv'
+    # csv_string = read_text_as_str(file_path)
+    # # print(csv_string) # TEST
+    # # run_gpt(csv_string)
 
-    # Example usage:
-    file_path = 'camelot-concat.csv'
-    csv_string = read_csv_as_string(file_path)
-    # test2 = read_csv_as_string("camelot-page-5-table-1.csv")
-    print("==========SPACE==========")
-    print("==========SPACE==========")
-    print("==========SPACE==========")
-    # print(csv_string) # TEST
+
+    # test2 = read_text_as_str("camelot-page-5-table-1.csv")
     # print(test2)
     # csvfull = open('camelot-concat.csv', 'r')
 
@@ -203,38 +348,9 @@ if __name__ == '__main__':
     # print("space")
     # print(tables[0].df)
 
-    client = OpenAI(
-    api_key = os.environ['OPENAI_API_KEY']
-    )
-
-    completion = client.chat.completions.create(
-      model="gpt-3.5-turbo",
-      messages=[
-        # {"role": "system", "content": "You are converting the provided text into a .ics file which generates an event for each multiple events"} ,# USE EITHER THIS OR THAT
-        # {"role": "system", "content": "Convert the following data into pairs containing date and event name. Then, using the data that was converted, turn the data into an ics file using the dates provided in the current year"},# USE EITHER THIS OR THAT
-        {"role": "system", "content": "You convert the following data into pairs containing date and event name"}, # . Then, using the data that was converted, turn the data into an ics file using the dates provided in the current year
-        {"role": "user", "content": "" + csv_string}
-      ]
-    )
-    print(completion.choices[0].message.content)
-
-    completion = client.chat.completions.create(
-      model="gpt-3.5-turbo",
-      messages=[
-        # {"role": "system", "content": "You are converting the provided text into a .ics file which generates an event for each multiple events"} ,# USE EITHER THIS OR THAT
-        # {"role": "system", "content": "Convert the following data into pairs containing date and event name. Then, using the data that was converted, turn the data into an ics file using the dates provided in the current year"},# USE EITHER THIS OR THAT
-        {"role": "system", "content": "You turn the data provided into an ics file using the dates provided in the current year of 2024 resulting in non repeating events"}, # . Then, using the data that was converted, turn the data into an ics file using the dates provided in the current year
-        {"role": "user", "content": "" + completion.choices[0].message.content}
-      ]
-    )
-
-    print(completion.choices[0].message.content)
-
-    gpt_output = open("gptoutput.ics", "w")
-    gpt_output.writelines(completion.choices[0].message.content)
-    gpt_output.close()
     
 
-    print("DONE")
+    
+    
 
 

@@ -35,4 +35,11 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 ReactWebsite/syllabus-main/src/app/api/gpt/key.js
+<<<<<<< Updated upstream
+=======
+
+#for authentication:
+node_modules
+.next
+>>>>>>> Stashed changes
 .env
