@@ -249,7 +249,7 @@ def run_gpt(csv_string):
 
 
 # newer implementation of GPT
-def run_gpt_broad(pdf_path):
+def run_gpt_broad(pdf_path, output):
     """ Using GPT, we take each page of a pdf and ask it a couple of questions
     1: Extract important dates 
     
@@ -258,6 +258,9 @@ def run_gpt_broad(pdf_path):
     ----------
     pdf_path : str
         The file location of the pdf
+
+    output: str
+        Name of the .ics file
 
     """
 
@@ -274,23 +277,36 @@ def run_gpt_broad(pdf_path):
     # Calls the first time where GPT parses the information into date and event pairs
     # This is under the assumption that only calendar dates are extracted
     parsed_events = []
-    for page in file_text
+    for page in file_text:
         completion = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[
-            {"role": "system", "content": "Extract dates from the text following the specific format provided below. with in "
-            "The Event Type can only be Homework, Assessment, or Event"
-            "Date: -||-"
-            "Event Name: "
-
-            },
-            {"role": "user", "content": "" + page}
+            {"role": "system", "content": "Extract the dates and events mentioned in the article. First extract the date, then extract the name of the event, and finally set a description of the event while also mentioning if the event is either a Homework, Assessment or Event. "
+            "Desired format: "
+            "Date: -||- "
+            "Event Name: -||- "
+            "Description: -||- "},
+            {"role": "user", "content": "" + str(page)}
         ]
         )
         parsed_events.append(completion.choices[0].message.content)
         print(completion.choices[0].message.content)
+        print("=====Space=====")
 
     # Need to parse entire PDF into a str while not exceeding the limits of OpenAI
+
+
+
+    completion = client.chat.completions.create(
+      model="gpt-3.5-turbo",
+      messages=[
+        {"role": "system", "content": "Convert the data provided into an ics file using the information provided in the current year of 2024 resulting in non repeating events"},
+        {"role": "user", "content": "" + ''.join(parsed_events)}
+      ]
+    )
+    gpt_output = open(str(output) + ".ics", "w")
+    gpt_output.writelines(completion.choices[0].message.content)
+    gpt_output.close()
 
 
 
@@ -300,15 +316,18 @@ def run_gpt_broad(pdf_path):
 if __name__ == '__main__':
     load_dotenv()
     pdf_path = "SOC385Test.pdf"
+    run_gpt_broad(pdf_path, "gpt_broad_output")
+
+
 
     # Note: Camelot > PDFPlumber with default settings for tables. However, Camelot doesn't handle any non-table data
-    print("====PDFPLUMBER====")
+    # print("====PDFPLUMBER====")
     # extract_tables_from_pdf_plumber(pdf_path)
 
-    print("====CAMELOT====")
+    # print("====CAMELOT====")
     # extract_tables_from_pdf_camelot(pdf_path) # Try using this
 
-    print("====PYMUPDF====")
+    # print("====PYMUPDF====")
     # Haven't figured out the table parameters yet....
     # Note: PyMuPDF can handle tables and format to HTML.
     # For text: https://pymupdf.readthedocs.io/en/latest/recipes-text.html#text
@@ -317,9 +336,9 @@ if __name__ == '__main__':
     # extract_text_from_pdf_pymupdf(pdf_path)
     # extract_page_from_pdf_pymupdf(pdf_path)
     # print(read_text_as_str("SOC385Test.pdf_output_1.txt"))
-    for i in parse_pdf_as_text(pdf_path):
-        print(i)
-        print("=====BREAK=====")
+    # for i in parse_pdf_as_text(pdf_path):
+    #     print(i)
+    #     print("=====BREAK=====")
 
     # extract_HTML_from_pdf_pymupdf(pdf_path)
     # extract_tables_from_pdf_pymupdf(pdf_path)

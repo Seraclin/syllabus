@@ -1,0 +1,142 @@
+```ics
+BEGIN:VCALENDAR
+PRODID:-//Google Inc//Google Calendar 70.9054//EN
+VERSION:2.0
+CALSCALE:GREGORIAN
+BEGIN:VEVENT
+DTSTART:20240118
+SUMMARY:Introduction
+DESCRIPTION:Introduction event - Homework
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240123
+SUMMARY:Xinhua News Agency
+DESCRIPTION:Reading on organizational response to COVID-19 crisis in China - Assessment
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240125
+SUMMARY:Party\, Control\, Digitalization
+DESCRIPTION:Reading on Chinese Newspaper Groups in the Digital Era - Homework
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240130
+SUMMARY:Framing Theory
+DESCRIPTION:Analysis of international news content in Chinese newspapers - Assessment
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240201
+SUMMARY:TA session
+DESCRIPTION:Content analysis research session for Group Project 1 - Event
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240208
+SUMMARY:News Group Project
+DESCRIPTION:A systematic analysis of American media coverage of China using content analysis in a PowerPoint presentation.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240215
+SUMMARY:Screening at home
+DESCRIPTION:Watching movies including "Raise the Red Lantern\," "To Live\," "Legend of the Demon Cat\," and "A Touch of Sin." - Homework
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240220
+SUMMARY:Filmmaking generations lecture and reading
+DESCRIPTION:Reading "Generating History: Rethinking Generations in Chinese Filmmaking" by Clark\, P. (2021). - Homework
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240222
+SUMMARY:Chinese Dream\, Box-office Martial arts film discussion
+DESCRIPTION:Reading "The Fifth Generation: A Reassessment" by Wendy Larson (2011). - Homework
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240226
+SUMMARY:Film Reaction Paper due
+DESCRIPTION:Deadline for submitting a film reaction paper. - Assessment
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240227
+SUMMARY:Radio TV lecture and reading
+DESCRIPTION:Reading "On the trail of comparative urbanism: Square dance and public space in China" by Qian\, J.\, & Lu\, Y. (2019). - Homework
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240229
+SUMMARY:Spring Festival Gala TV program discussion
+DESCRIPTION:Reading "Casting an ‘Outsider’in the ritual center: Two decades of performances of ‘Rural Migrants’ in CCTV’s Spring Festival Gala" by Yuan\, Y. (2017). - Homework
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240305
+SUMMARY:Reality show lecture and reading
+DESCRIPTION:Reading "Queer\, yet never lesbian: a ten-year look back at the reality TV singing competition show Super Voice Girl" by Zhao\, J. J. (2018). - Homework
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240307
+SUMMARY:Dynasty TV
+DESCRIPTION:Journal contribution on Chinese revolutionary TV drama between propaganda and marketization (Reading #9) - Homework
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240312
+SUMMARY:No Class
+DESCRIPTION:Spring Break - Event
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240314
+SUMMARY:No Class
+DESCRIPTION:Spring Break - Event
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240319
+SUMMARY:Dynasty TV
+DESCRIPTION:Study on Chinese dynasty TV drama as political discourse (Reading #10) - Assessment
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240321
+SUMMARY:Idol Drama\, Danmei\, Time travel
+DESCRIPTION:Analysis of Word of Honor and brand homonationalism with "Chinese characteristics" in TV drama (Reading #11) - Homework
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240326
+SUMMARY:Internet
+DESCRIPTION:Review of 20 years of Internet development in China (Reading #12) - Homework
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240328
+SUMMARY:WeChat
+DESCRIPTION:Study on WeChat as infrastructure shaping Chinese digital platforms (Reading #13) - Assessment
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240404
+SUMMARY:TA session
+DESCRIPTION:A TA session for Internet Group work.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240409
+SUMMARY:New Culture\, New Media\, Censorship
+DESCRIPTION:Discussion on changes in Chinese People’s Cultural Life in New Media Environment.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240411
+SUMMARY:Group Presentation
+DESCRIPTION:Group presentation.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240416
+SUMMARY:Group Presentation
+DESCRIPTION:Another group presentation.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240418
+SUMMARY:Advertising
+DESCRIPTION:Presentation on "Forty Years of the Return of Advertising in China (1979–2019): A Critical Overview."
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240423
+SUMMARY:Advertising
+DESCRIPTION:Discussion on dynamic luxury advertising.
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240425
+SUMMARY:Conclusion Individual Meeting
+DESCRIPTION:Individual meeting to summarize Ad project.
+END:VEVENT
+END:VCALENDAR
+```
