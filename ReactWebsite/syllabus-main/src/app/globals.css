@@ -175,3 +175,31 @@ input[type="submit"]:hover {
   color: #666;
 }
 
+/* Style for the ad container */
+.container1 {
+  display: flex;
+  justify-content: space-between; /* Align items with space between them */
+  align-items: flex-start; /* Align items at the start of the cross axis */
+  margin-top: 1rem;
+  margin-left: 0.2rem;
+  margin-right: 0.2rem;
+}
+
+.ad-container {
+  display: flex;
+  flex-direction: column;
+  width: 300px; /* Adjust as needed */
+  min-width: 200px;
+}
+
+.ad-container img {
+  width: 100%;
+  height: auto;
+  margin-bottom: 10px; /* Space between ad images */
+}
+
+/* For dispaying files in a list */
+.user-filelist{
+  text-align: left;
+  margin-left: 1rem;
+}
