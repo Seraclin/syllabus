@@ -11,15 +11,25 @@ p {
   line-height: 1.6;
   text-align: center; /* Centering text */
 }
+
 .title-bar {
   display: flex;
-  justify-content: center; /* Centering the title */
+  justify-content: center; /* Center the content horizontally */
   align-items: center;
   margin-bottom: 1rem;
   padding: 1rem 2rem;
   background-color: #7a6ff0;
   color: white;
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.title-container {
+  flex: 1; /* Allow the title to grow and take up available space */
+  text-align: center; /* Center the text within its container */
+}
+
+.right-links {
+  margin-left: auto; /* Push the links to the rightmost side */
 }
 
 /* Upload button */
@@ -71,17 +81,11 @@ input[type="submit"]:hover {
 
 /* Upload progress */
 .upload-progress-bar-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center; /*Center horizontally */
-  align-items: center; /* Center vertically */
   margin: 2px auto; /* Centering the container */
   width: fit-content; /* Adjust width to content */
 }
 
 .upload-progress-bar {
-  display: flex;
-  justify-content: flex-start;
   overflow: hidden; 
   border: solid;
   border-radius: 5px; 
@@ -111,8 +115,7 @@ input[type="submit"]:hover {
 }
 
 .download-container a {
-  display: flex;
-  justify-content: center; /* Center horizontally */
+  display: inline-block;
   background-color: #5e42a6;
   color: white;
   padding: 10px 20px;
@@ -128,9 +131,8 @@ input[type="submit"]:hover {
 
 /* Calendar events for previewing .ics files */
 .calendar-events {
-  flex: 1; /* Take remaining space */
-  max-width: 30rem;
-  margin: 0 10px; /* Centering the container */
+  max-width: 40rem;
+  margin: 0 auto; /* Centering the container */
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -173,25 +175,3 @@ input[type="submit"]:hover {
   color: #666;
 }
 
-/* Style for the ad container */
-.container1 {
-  display: flex;
-  justify-content: space-between; /* Align items with space between them */
-  align-items: flex-start; /* Align items at the start of the cross axis */
-  margin-top: 1rem;
-  margin-left: 0.2rem;
-  margin-right: 0.2rem;
-}
-
-.ad-container {
-  display: flex;
-  flex-direction: column;
-  width: 300px; /* Adjust as needed */
-  min-width: 200px;
-}
-
-.ad-container img {
-  width: 100%;
-  height: auto;
-  margin-bottom: 10px; /* Space between ad images */
-}
