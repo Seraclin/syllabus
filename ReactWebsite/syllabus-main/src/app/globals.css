@@ -11,17 +11,25 @@ p {
   line-height: 1.6;
   text-align: center; /* Centering text */
 }
+.roboto-condensed-title {
+  font-family: "Roboto Condensed", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700; /* Bold */
+  font-style: normal;
+}
 
 .title-bar {
   display: flex;
-  justify-content: center; /* Center the content horizontally */
+  justify-content: center;
   align-items: center;
   margin-bottom: 1rem;
   padding: 1rem 2rem;
   background-color: #7a6ff0;
   color: white;
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  font-family: 'Roboto Condensed', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
 
 .title-container {
   flex: 1; /* Allow the title to grow and take up available space */
@@ -101,6 +109,7 @@ input[type="submit"]:hover {
   border-color: #ccc;
   margin-top: 1rem;
   background-color: #e2e2e2;
+  
 }
 
 .upload-progress-bar-indicator {
