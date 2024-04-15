@@ -315,8 +315,10 @@ def run_gpt_broad(pdf_path, output):
 # Testing the performance of various pdf extraction libraries
 if __name__ == '__main__':
     load_dotenv()
-    pdf_path = "SOC385Test.pdf"
-    run_gpt_broad(pdf_path, "gpt_broad_output")
+    pdf_path = "CS 480 1 Spring 2024.pdf"
+    print("pdf path = " + pdf_path)
+    if (input('Run GPT?') == 'y'):
+        run_gpt_broad(pdf_path, "gpt_broad_output_cs_480")
 
 
 
