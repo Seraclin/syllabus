@@ -42,12 +42,38 @@ export default function UserFilesList() {
     return () => clearInterval(intervalId);
   }, []);
 
+  function removeFile(fileName){
+    // Remove selected file from the user's folder via API call
+    // const userId = Cookies.get('userId');
+    fetch(`/api/delete`, {
+      method: 'DELETE',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ fileName }), // send the filename in the request body
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        // Remove the file from the userFiles state
+        setUserFiles(prevFiles => prevFiles.filter(file => file !== fileName));
+      })
+      .catch(error => {
+        console.error('Error deleting file:', error);
+        alert("Error: removing", fileName);
+      });
+  }
+
   return (
     <div className='user-filelist'>
       <h2>Uploaded Files:</h2>
       <ul>
         {userFiles.map((fileName, index) => (
-          <li key={index}>{fileName}</li>
+          <li key={index}>{fileName}
+          <button type='button' onClick={() => removeFile(fileName)} style={{ marginLeft: '8px' }}>Remove</button>
+          </li>
         ))}
       </ul>
     </div>
