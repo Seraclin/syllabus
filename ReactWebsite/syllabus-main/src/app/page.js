@@ -1,11 +1,10 @@
 /* The Homepage, view locally with npm run dev, delete .next folder locally if not working */
 import UploadButton from "@/components/UploadButton"
 import CalendarEvent from "@/components/CalendarEvent"  // TODO delete this
-import DownloadButton from "@/components/DownloadButton"  // TODO edit this
 import { getSession,logout } from "@/_utils/lib";
 import { redirect } from "next/navigation";
 import UserFilesList from "@/components/UserFiles";
-
+import GenerateButton from "@/components/GenerateButton";
 
 
 export default async function Home() {
@@ -47,7 +46,7 @@ export default async function Home() {
       <div>
         <UploadButton />
         <UserFilesList />
-        <DownloadButton fileName="test1.ics"/>
+        <GenerateButton/>
         <div className="container1">
           <div className="ad-container left-justified">
             <img src="/Ad1.jpg" alt="Ad 1"></img>

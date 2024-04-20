@@ -22,8 +22,8 @@ export default function UploadButton() { // handle upload button behavior
     // Check if there's a file
     e.preventDefault()
     if(!files) {
-      console.error("Error: no file provided")
-      alert("No file provided!")
+      console.error("Error: no file provided");
+      alert("No file provided!");
       return;  // Error for no file added
     }
 
