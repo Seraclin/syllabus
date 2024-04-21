@@ -1,0 +1,128 @@
+```ics
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Example Calendar//EN
+CALSCALE:GREGORIAN
+
+BEGIN:VEVENT
+DTSTART:20240118
+SUMMARY:Introduction
+DESCRIPTION:Introductory session of the course.
+END:VEVENT
+
+BEGIN:VEVENT
+DTSTART:20230123
+SUMMARY:Xinhua News Agency - Covid-19
+DESCRIPTION:Discussion on the organizational response to COVID-19 crisis in China.
+END:VEVENT
+
+BEGIN:VEVENT
+DTSTART:20230125
+SUMMARY:Party\, Control\, Digitalization
+DESCRIPTION:Analysis of Chinese newspaper groups in the digital era.
+END:VEVENT
+
+BEGIN:VEVENT
+DTSTART:20230130
+SUMMARY:Framing Theory
+DESCRIPTION:Examination of how international news is framed in China through news content analysis.
+END:VEVENT
+
+BEGIN:VEVENT
+DTSTART:20230201
+SUMMARY:TA session
+DESCRIPTION:Teaching assistant session on content analysis research for Group Project 1.
+END:VEVENT
+
+BEGIN:VEVENT
+DTSTART:20230206
+SUMMARY:Group Presentation I
+DESCRIPTION:Group presentation session.
+END:VEVENT
+
+BEGIN:VEVENT
+DTSTART:20230208
+SUMMARY:Group Presentation II
+DESCRIPTION:Second group presentation session.
+END:VEVENT
+
+BEGIN:VEVENT
+DTSTART:20230208
+SUMMARY:Group Project due
+DESCRIPTION:Deadline for submitting Group Project 1 by 10:00 pm.
+END:VEVENT
+
+BEGIN:VEVENT
+DTSTART:20230213
+SUMMARY:Gold Periods\, Yang Ban Xi
+DESCRIPTION:Discussion on staging communism and the Chinese model opera.
+END:VEVENT
+
+BEGIN:VEVENT
+DTSTART:20230222
+SUMMARY:Chinese Dream\, Box-office Martial arts film
+DESCRIPTION:Reading about the Chinese Dream and the impact of Martial arts films on the box office.
+END:VEVENT
+
+BEGIN:VEVENT
+DTSTART:20230229
+SUMMARY:TV program: Spring Festival Gala
+DESCRIPTION:Studying the performances of 'Rural Migrants' in CCTV's Spring Festival Gala.
+END:VEVENT
+
+BEGIN:VEVENT
+DTSTART:20230307
+SUMMARY:TV drama Dynasty TV
+DESCRIPTION:Journal contribution on Chinese revolutionary TV drama between propaganda and marketization (Homework)
+END:VEVENT
+
+BEGIN:VEVENT
+DTSTART:20230319
+SUMMARY:TV drama Dynasty TV
+DESCRIPTION:Research on corruption and Officialdom in Chinese dynasty TV drama as political discourse (Homework)
+END:VEVENT
+
+BEGIN:VEVENT
+DTSTART:20230321
+SUMMARY:TV drama Idol Drama\, Danmei\, Time travel
+DESCRIPTION:Study on brand homonationalism with "Chinese characteristics" in TV drama Word of Honor (Homework)
+END:VEVENT
+
+BEGIN:VEVENT
+DTSTART:20230326
+SUMMARY:Internet
+DESCRIPTION:Review of 20 Years of Internet Development in China for New Media and China's Social Development (Homework)
+END:VEVENT
+
+BEGIN:VEVENT
+DTSTART:20230328
+SUMMARY:WeChat
+DESCRIPTION:Examination of WeChat as infrastructure in shaping Chinese digital platforms for the Chinese Journal of Communication (Homework)
+END:VEVENT
+
+BEGIN:VEVENT
+DTSTART:20230402
+SUMMARY:TA Lecture
+DESCRIPTION:Teaching assistant lecture scheduled for the day (Event)
+END:VEVENT
+
+BEGIN:VEVENT
+DTSTART:20230411
+SUMMARY:Group Presentation
+DESCRIPTION:Event
+END:VEVENT
+
+BEGIN:VEVENT
+DTSTART:20230416
+SUMMARY:Group Presentation
+DESCRIPTION:Event
+END:VEVENT
+
+BEGIN:VEVENT
+DTSTART:20230425
+SUMMARY:Conclusion Individual meeting Summary
+DESCRIPTION:Homework - Ad project Due
+END:VEVENT
+
+END:VCALENDAR
+```
