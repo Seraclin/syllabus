@@ -48,7 +48,7 @@ function parseDate(dateString) {
 
     if (dateString.includes('T')) {
         // Date string contains time portion
-        console.log("dateT:", dateString)
+        // console.log("dateT:", dateString)
         const strYear = dateString.substring(0, 4);
         const strMonth = parseInt(dateString.substring(4, 6), 10) - 1; // months are zero-based
         const strDay = dateString.substring(6, 8);
@@ -58,8 +58,7 @@ function parseDate(dateString) {
         outDate =  new Date(strYear,strMonth, strDay, strHour, strMin, strSec);
     } else {
         // Date string doesn't contain time portion
-       
-        console.log("date:", dateString)
+        // console.log("date:", dateString)
         const strYear = dateString.substring(0, 4);
         const strMonth = parseInt(dateString.substring(4, 6), 10) - 1; // Adjust for zero-based months
         const strDay = dateString.substring(6, 8);
@@ -67,7 +66,7 @@ function parseDate(dateString) {
     }             
     
     const formattedDate = outDate.toLocaleString(); // Using toLocaleString method
-    console.log("test:", formattedDate); // Output: "4/5/2022, 12:00:00 PM" (example)
+    // console.log("test:", formattedDate); // Output: "4/5/2022, 12:00:00 PM" (example)
  
     return formattedDate; // For now, just return the raw string
 }

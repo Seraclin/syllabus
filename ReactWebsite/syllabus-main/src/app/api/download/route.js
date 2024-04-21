@@ -1,15 +1,19 @@
-import { join } from 'path';
+import { extname, join } from 'path';
+import path from 'path';
 import { NextRequest, NextResponse } from 'next/server';
 import { readFile } from 'fs/promises';
+import { cookies } from 'next/headers';
+// Download file based on userId
+// TODO change paths accordingly
 
-export default async function downloadFile(request) {
-    const { fileName } = request.query;
+export async function GET(request)  {
+    const userId = cookies().get('userId').value;
 
     // Define the root directory where files are stored
     const rootDir = process.cwd();
 
     // Construct the full file path
-    const filePath = join(rootDir, 'tmp', fileName);
+    const filePath = join(rootDir, 'tmp', fileName);  // TODO change path accordingly to where your output file is located after generating
 
     try {
         // Read the file contents

@@ -11,15 +11,33 @@ p {
   line-height: 1.6;
   text-align: center; /* Centering text */
 }
+.roboto-condensed-title {
+  font-family: "Roboto Condensed", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700; /* Bold */
+  font-style: normal;
+}
+
 .title-bar {
   display: flex;
-  justify-content: center; /* Centering the title */
+  justify-content: center;
   align-items: center;
   margin-bottom: 1rem;
   padding: 1rem 2rem;
   background-color: #7a6ff0;
   color: white;
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  font-family: 'Roboto Condensed', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+.title-container {
+  flex: 1; /* Allow the title to grow and take up available space */
+  text-align: center; /* Center the text within its container */
+}
+
+.right-links {
+  margin-left: auto; /* Push the links to the rightmost side */
 }
 
 /* Upload button */
@@ -91,6 +109,7 @@ input[type="submit"]:hover {
   border-color: #ccc;
   margin-top: 1rem;
   background-color: #e2e2e2;
+  
 }
 
 .upload-progress-bar-indicator {
@@ -99,38 +118,11 @@ input[type="submit"]:hover {
   transition: width 0.4s ease;
 }
 
-/* Download container (technically a href) */
-.download-container {
-  display: flex; /* Changed to flex to center the button */
-  justify-content: center; /* Centering the button horizontally */
-  padding: 10px 20px;
-  border-radius: 5px;
-  text-decoration: none;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  margin: 0 auto; /* Centering the container */
-}
-
-.download-container a {
-  display: flex;
-  justify-content: center; /* Center horizontally */
-  background-color: #5e42a6;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 5px;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
-}
-
-.download-container a:active,
-.download-container a:hover {
-  background-color: #4d359a;
-}
 
 /* Calendar events for previewing .ics files */
 .calendar-events {
-  flex: 1; /* Take remaining space */
-  max-width: 30rem;
-  margin: 0 10px; /* Centering the container */
+  max-width: 40rem;
+  margin: 0 auto; /* Centering the container */
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -194,4 +186,38 @@ input[type="submit"]:hover {
   width: 100%;
   height: auto;
   margin-bottom: 10px; /* Space between ad images */
+}
+
+/* For dispaying files in a list */
+.user-filelist{
+  text-align: left;
+  margin-left: 1rem;
+}
+
+/* For generate button and download button */
+.generate-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.generate-button {
+  background-color: #5e42a6;
+  border: none;
+  color: white;
+  padding: 15px 30px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 20px;
+  border-radius: 8px;
+  margin: 0px 10px;
+
+}
+
+.generate-button:hover {
+  background-color: #4d359a;
+}
+
+.generate-button:active {
+  background-color: #111363;
 }

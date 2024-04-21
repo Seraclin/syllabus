@@ -39,3 +39,5 @@ ReactWebsite/syllabus-main/src/app/api/gpt/key.js
 #for authentication:
 node_modules
 .next
+
+/ReactWebsite/syllabus-main/.env
