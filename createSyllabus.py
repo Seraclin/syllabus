@@ -270,28 +270,32 @@ def run_gpt_broad(pdf_path, output):
     )
 
     # Gets the pdf parsed as a string in a list with each index being a page
-    file_text = parse_pdf_as_text(pdf_path)
+    
     # n = len(file_text)
 
 
     # Calls the first time where GPT parses the information into date and event pairs
     # This is under the assumption that only calendar dates are extracted
     parsed_events = []
-    for page in file_text:
-        completion = client.chat.completions.create(
-        model="gpt-3.5-turbo",
-        messages=[
-            {"role": "system", "content": "Extract the dates and events mentioned in the article. First extract the date, then extract the name of the event, and finally set a description of the event while also mentioning if the event is either a Homework, Assessment or Event. "
-            "Desired format: "
-            "Date: -||- "
-            "Event Name: -||- "
-            "Description: -||- "},
-            {"role": "user", "content": "" + str(page)}
-        ]
-        )
-        parsed_events.append(completion.choices[0].message.content)
-        print(completion.choices[0].message.content)
-        print("=====Space=====")
+
+    for file in os.listdir(pdf_path):
+        print("Running GPT for File: " + file)
+        file_text = parse_pdf_as_text(pdf_path)
+        for page in file_text:
+            completion = client.chat.completions.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": "Extract the dates and events mentioned in the article. First extract the date, then extract the name of the event, and finally set a description of the event while also mentioning if the event is either a Homework, Assessment or Event. "
+                "Desired format: "
+                "Date: -||- "
+                "Event Name: -||- "
+                "Description: -||- "},
+                {"role": "user", "content": "" + str(page)}
+            ]
+            )
+            parsed_events.append(completion.choices[0].message.content)
+            print(completion.choices[0].message.content)
+            print("=====Space=====")
 
     # Need to parse entire PDF into a str while not exceeding the limits of OpenAI
 
@@ -315,10 +319,16 @@ def run_gpt_broad(pdf_path, output):
 # Testing the performance of various pdf extraction libraries
 if __name__ == '__main__':
     load_dotenv()
-    pdf_path = "CS 480 1 Spring 2024.pdf"
+    pdf_path = 'syllabus'
+    
+    print("Files that will be consolidated: ")
+    for file in os.listdir(pdf_path):
+        print(file)
+
     print("pdf path = " + pdf_path)
-    if (input('Run GPT?') == 'y'):
+    if (input('Are you sure you want to run GPT? y to confirm, literally anything else to cancel ') == 'y'):
         run_gpt_broad(pdf_path, "gpt_broad_output_cs_480")
+    print("Process has ended")
 
 
 
