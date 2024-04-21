@@ -6,6 +6,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import os
+import sys
 from dotenv import load_dotenv
 
 from openai import OpenAI
@@ -247,6 +248,10 @@ def run_gpt(csv_string):
 
     print("DONE")
 
+def is_pdf(file_path):
+    with open(file_path, 'rb') as f:
+        header = f.read(4)
+    return header == b'%PDF'
 
 # newer implementation of GPT
 def run_gpt_broad(pdf_path, output):
@@ -280,6 +285,7 @@ def run_gpt_broad(pdf_path, output):
 
     for file in os.listdir(pdf_path):
         print("Running GPT for File: " + file)
+        if not is_pdf(file): continue
         file_text = parse_pdf_as_text(pdf_path)
         for page in file_text:
             completion = client.chat.completions.create(
@@ -308,7 +314,7 @@ def run_gpt_broad(pdf_path, output):
         {"role": "user", "content": "" + ''.join(parsed_events)}
       ]
     )
-    gpt_output = open(str(output) + ".ics", "w")
+    gpt_output = open(pdf_path + '\\' + str(output) + ".ics", "w")
     gpt_output.writelines(completion.choices[0].message.content)
     gpt_output.close()
 
@@ -319,16 +325,21 @@ def run_gpt_broad(pdf_path, output):
 # Testing the performance of various pdf extraction libraries
 if __name__ == '__main__':
     load_dotenv()
-    pdf_path = 'syllabus'
+    
+    pdf_path = '..\\app\\api\\upload\\user_files\\' + sys.argv[1]
+    print("Path to folder is: " + pdf_path)
     
     print("Files that will be consolidated: ")
+    n = 0
     for file in os.listdir(pdf_path):
+        if is_pdf(file): n += 1
         print(file)
 
     print("pdf path = " + pdf_path)
-    if (input('Are you sure you want to run GPT? y to confirm, literally anything else to cancel ') == 'y'):
-        run_gpt_broad(pdf_path, "gpt_broad_output_cs_480")
-    print("Process has ended")
+    if n != 0: 
+        if (input('Are you sure you want to run GPT? y to confirm, literally anything else to cancel ') == 'y'):
+            run_gpt_broad(pdf_path, "eSyllabus")
+    print("Process has ended with " + n + " syllabi being consolidated")
 
 
 
