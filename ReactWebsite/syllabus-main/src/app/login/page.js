@@ -1,9 +1,10 @@
 import { redirect } from 'next/navigation';
 import { login } from '@/_utils/lib';
+import '../globals.css'; // Adjust the path according to your file structure
 
 export default async function Page() {
   return (
-    <section>
+    <section className="login-section">
       <h1>Login</h1>
       <form
         action={async (formData) => {
