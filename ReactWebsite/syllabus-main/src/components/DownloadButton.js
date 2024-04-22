@@ -17,6 +17,9 @@ const DownloadButton = ({ userId }) => {  // you probably don't need this prop i
                 throw new Error('Network response was not ok');
             }
             // TODO: do something here if request is successful, probably want to parse request fields for the output file
+
+            // Location of download file will be at
+            // '..\\app\\api\\upload\\user_files\\' + userId + '\\eSyllabus.ics'
             
           })
           .catch(error => {

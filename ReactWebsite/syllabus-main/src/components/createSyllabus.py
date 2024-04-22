@@ -6,6 +6,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import os
+import sys
 from dotenv import load_dotenv
 
 from openai import OpenAI
@@ -96,7 +97,7 @@ def extract_tables_from_pdf_pymupdf(pdf_path): # TODO
     # print(df)
 
 
-
+# Extracts the text from a PDF and puts it into a .txt file
 def extract_text_from_pdf_pymupdf(pdf_path):
     """Gets and exports to text the pdf's text using pymupdf.
     Note: The output will be plain text as it is coded in the document. No effort is made to prettify in any way.
@@ -116,6 +117,34 @@ def extract_text_from_pdf_pymupdf(pdf_path):
         out.write(bytes((12,)))  # write page delimiter (form feed 0x0C)
     out.close()
 
+def extract_page_from_pdf_pymupdf(pdf_path, name):
+    """Gets and exports to text the pdf's text using pymupdf.
+    Note: The output will be plain text as it is coded in the document. No effort is made to prettify in any way.
+    Specifically for PDF, this may mean output not in usual reading order, unexpected line breaks and so forth.
+
+    Parameters
+    ----------
+    pdf_path : str
+        The file location of the pdf
+
+    name : str
+        The new name you want the files to be
+        Format will be name_output_n.txt, where n is the page number
+    """
+    n = 1
+    doc = fitz.open(pdf_path)  # open a document
+    
+    for page in doc:  # iterate the document pages
+        outName = name + "_output_" + str(n) + ".txt"
+        out = open(outName, "wb")  # create a text output
+        text = page.get_text().encode("utf8")  # get plain text (is in UTF-8)
+        out.write(text)  # write text of page
+        out.write(bytes((12,)))  # write page delimiter (form feed 0x0C)
+        n = n + 1
+        out.close()
+
+
+# Probably don't use this one
 def extract_HTML_from_pdf_pymupdf(pdf_path):
     """Gets and exports to HTML the pdf's text using pymupdf.
     Note: struggles with images
@@ -124,6 +153,8 @@ def extract_HTML_from_pdf_pymupdf(pdf_path):
     ----------
     pdf_path : str
         The file location of the pdf
+
+    
     """
     doc = fitz.open(pdf_path)  # open a document
     outName = pdf_path+"_output.html"
@@ -154,11 +185,29 @@ def extract_blocks_from_pdf_pymupdf(pdf_path):
         # out.write(bytes((12,)))  # write page delimiter (form feed 0x0C)
     # out.close()
 
-def read_csv_as_string(file_path):
+def read_text_as_str(file_path):
     with open(file_path, 'r', encoding='utf-8') as file:
         csv_content = file.read()
     return csv_content
 
+
+def parse_pdf_as_text(pdf_path):
+    """Gets and puts into a list the text the pdf provided has using pymupdf.
+    Note: The output will be plain text as it is coded in the document. No effort is made to prettify in any way.
+    Specifically for PDF, this may mean output not in usual reading order, unexpected line breaks and so forth.
+
+    Parameters
+    ----------
+    pdf_path : str
+        The file location of the pdf
+
+    """
+    file_text = []
+    doc = fitz.open(pdf_path)  # open a document
+    for page in doc:  # iterate the document pages
+        file_text.append(page.get_text())
+    return file_text
+        
 
 # The first implementation of how we were calling ChatGPT. This only works if there are graphs present within the PDF
 def run_gpt(csv_string):
@@ -199,14 +248,75 @@ def run_gpt(csv_string):
 
     print("DONE")
 
-def run_gpt_broad(csv_string):
+def is_pdf(file_path):
+    with open(file_path, 'rb') as f:
+        header = f.read(4)
+    return header == b'%PDF'
+
+# newer implementation of GPT
+def run_gpt_broad(pdf_path, output):
+    """ Using GPT, we take each page of a pdf and ask it a couple of questions
+    1: Extract important dates 
+    
+
+    Parameters
+    ----------
+    pdf_path : str
+        The file location of the pdf
+
+    output: str
+        Name of the .ics file
+
+    """
 
     # Begins OpenAI Connection
     client = OpenAI(
         api_key = os.environ['OPENAI_API_KEY']
     )
 
+    # Gets the pdf parsed as a string in a list with each index being a page
+    
+    # n = len(file_text)
+
+
+    # Calls the first time where GPT parses the information into date and event pairs
+    # This is under the assumption that only calendar dates are extracted
+    parsed_events = []
+
+    for file in os.listdir(pdf_path):
+        print("Running GPT for File: " + file)
+        if not is_pdf(file): continue
+        file_text = parse_pdf_as_text(pdf_path)
+        for page in file_text:
+            completion = client.chat.completions.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": "Extract the dates and events mentioned in the article. First extract the date, then extract the name of the event, and finally set a description of the event while also mentioning if the event is either a Homework, Assessment or Event. "
+                "Desired format: "
+                "Date: -||- "
+                "Event Name: -||- "
+                "Description: -||- "},
+                {"role": "user", "content": "" + str(page)}
+            ]
+            )
+            parsed_events.append(completion.choices[0].message.content)
+            print(completion.choices[0].message.content)
+            print("=====Space=====")
+
     # Need to parse entire PDF into a str while not exceeding the limits of OpenAI
+
+
+
+    completion = client.chat.completions.create(
+      model="gpt-3.5-turbo",
+      messages=[
+        {"role": "system", "content": "Convert the data provided into an ics file using the information provided in the current year of 2024 resulting in non repeating events"},
+        {"role": "user", "content": "" + ''.join(parsed_events)}
+      ]
+    )
+    gpt_output = open(pdf_path + '\\' + str(output) + ".ics", "w")
+    gpt_output.writelines(completion.choices[0].message.content)
+    gpt_output.close()
 
 
 
@@ -215,25 +325,47 @@ def run_gpt_broad(csv_string):
 # Testing the performance of various pdf extraction libraries
 if __name__ == '__main__':
     load_dotenv()
-    pdf_path = "SOC385Test.pdf"
+    
+    pdf_path = '..\\app\\api\\upload\\user_files\\' + sys.argv[1]
+    print("Path to folder is: " + pdf_path)
+    
+    print("Files that will be consolidated: ")
+    n = 0
+    for file in os.listdir(pdf_path):
+        if is_pdf(file): n += 1
+        print(file)
+
+    print("pdf path = " + pdf_path)
+    if n != 0: 
+        if (input('Are you sure you want to run GPT? y to confirm, literally anything else to cancel ') == 'y'):
+            run_gpt_broad(pdf_path, "eSyllabus")
+    print("Process has ended with " + n + " syllabi being consolidated")
+
+
 
     # Note: Camelot > PDFPlumber with default settings for tables. However, Camelot doesn't handle any non-table data
-    print("====PDFPLUMBER====")
-
+    # print("====PDFPLUMBER====")
     # extract_tables_from_pdf_plumber(pdf_path)
-    print("====CAMELOT====")
-    
+
+    # print("====CAMELOT====")
     # extract_tables_from_pdf_camelot(pdf_path) # Try using this
-    print("====PYMUPDF====")
+
+    # print("====PYMUPDF====")
     # Haven't figured out the table parameters yet....
     # Note: PyMuPDF can handle tables and format to HTML.
     # For text: https://pymupdf.readthedocs.io/en/latest/recipes-text.html#text
     # for tables: https://pymupdf.readthedocs.io/en/latest/page.html#Page.find_tables
 
     # extract_text_from_pdf_pymupdf(pdf_path)
+    # extract_page_from_pdf_pymupdf(pdf_path)
+    # print(read_text_as_str("SOC385Test.pdf_output_1.txt"))
+    # for i in parse_pdf_as_text(pdf_path):
+    #     print(i)
+    #     print("=====BREAK=====")
+
     # extract_HTML_from_pdf_pymupdf(pdf_path)
     # extract_tables_from_pdf_pymupdf(pdf_path)
-    extract_blocks_from_pdf_pymupdf(pdf_path)
+    # extract_blocks_from_pdf_pymupdf(pdf_path)
 
 
 
@@ -243,12 +375,12 @@ if __name__ == '__main__':
     # # print(tables)
     # tables.to_csv('camelot-concat.csv')
     # file_path = 'camelot-concat.csv'
-    # csv_string = read_csv_as_string(file_path)
+    # csv_string = read_text_as_str(file_path)
     # # print(csv_string) # TEST
     # # run_gpt(csv_string)
 
 
-    # test2 = read_csv_as_string("camelot-page-5-table-1.csv")
+    # test2 = read_text_as_str("camelot-page-5-table-1.csv")
     # print(test2)
     # csvfull = open('camelot-concat.csv', 'r')
 

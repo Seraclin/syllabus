@@ -1,0 +1,194 @@
+```ics
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Emory University//Academic Calendar 2024//EN
+
+BEGIN:VEVENT
+DTSTART:20240117
+DTEND:20240117
+SUMMARY:Syllabus and policies
+DESCRIPTION:Event
+END:VEVENT
+
+BEGIN:VEVENT
+DTSTART:20240122
+DTEND:20240122
+SUMMARY:Growth Model
+DESCRIPTION:Event
+END:VEVENT
+
+BEGIN:VEVENT
+DTSTART:20240124
+DTEND:20240124
+SUMMARY:Homework 1 due
+DESCRIPTION:Homework
+END:VEVENT
+
+BEGIN:VEVENT
+DTSTART:20240205
+DTEND:20240205
+SUMMARY:Review for midterm 1
+DESCRIPTION:Event
+END:VEVENT
+
+BEGIN:VEVENT
+DTSTART:20240214
+DTEND:20240214
+SUMMARY:Midterm 1
+DESCRIPTION:Assessment
+END:VEVENT
+
+BEGIN:VEVENT
+DTSTART:20240219
+DTEND:20240219
+SUMMARY:Transportation
+DESCRIPTION:Event
+END:VEVENT
+
+BEGIN:VEVENT
+DTSTART:20240221
+DTEND:20240221
+SUMMARY:Thrift Model
+DESCRIPTION:Event
+END:VEVENT
+
+BEGIN:VEVENT
+DTSTART:20240228
+DTEND:20240228
+SUMMARY:Homework 2 due
+DESCRIPTION:Homework
+END:VEVENT
+
+BEGIN:VEVENT
+DTSTART:20240304
+DTEND:20240304
+SUMMARY:Review for midterm 2
+DESCRIPTION:Event
+END:VEVENT
+
+BEGIN:VEVENT
+DTSTART:20240306
+DTEND:20240306
+SUMMARY:Midterm 2
+DESCRIPTION:Assessment
+END:VEVENT
+
+BEGIN:VEVENT
+DTSTART:20240311
+DTEND:20240311
+SUMMARY:Spring Break
+DESCRIPTION:Event
+END:VEVENT
+
+BEGIN:VEVENT
+DTSTART:20240313
+DTEND:20240313
+SUMMARY:Portfolio Model
+DESCRIPTION:Event
+END:VEVENT
+
+BEGIN:VEVENT
+DTSTART:20240327
+DTEND:20240327
+SUMMARY:General Equilibrium
+DESCRIPTION:Event
+END:VEVENT
+
+BEGIN:VEVENT
+DTSTART:20240401
+DTEND:20240401
+SUMMARY:Cournot Duopoly
+DESCRIPTION:Event
+END:VEVENT
+
+BEGIN:VEVENT
+DTSTART:20240403
+DTEND:20240403
+SUMMARY:Homework 3 due
+DESCRIPTION:Homework
+END:VEVENT
+
+BEGIN:VEVENT
+DTSTART:20240408
+DTEND:20240408
+SUMMARY:Review for midterm 3
+DESCRIPTION:Event
+END:VEVENT
+
+BEGIN:VEVENT
+DTSTART:20240410
+DTEND:20240410
+SUMMARY:Midterm 3
+DESCRIPTION:Assessment
+END:VEVENT
+
+BEGIN:VEVENT
+DTSTART:20240415
+DTEND:20240415
+SUMMARY:Genetic Algorithms
+DESCRIPTION:Event
+END:VEVENT
+
+BEGIN:VEVENT
+DTSTART:20240417
+DTEND:20240417
+SUMMARY:Agent-Based Models
+DESCRIPTION:Event
+END:VEVENT
+
+BEGIN:VEVENT
+DTSTART:20240429
+DTEND:20240429
+SUMMARY:Project presentations
+DESCRIPTION:Event
+END:VEVENT
+
+BEGIN:VEVENT
+DTSTART:20240503
+DTEND:20240503
+SUMMARY:Final exam
+DESCRIPTION:Assessment
+END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:Letter Grade Assignment
+DESCRIPTION:The letter grades will be assigned based on the minimum scores listed in the table.
+END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:Change Request Deadline
+DESCRIPTION:Students must submit any request to change the score of a graded item within one week after the item is returned.
+END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:Teamwork Policy
+DESCRIPTION:In-class exercises should be done in pairs, homework assignments individually, and the final project in teams of 2-3 students.
+END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:Academic Integrity Reminder
+DESCRIPTION:Students should follow the Emory's Honor Code and the Computer Science Department policy, and appropriate citation of all external sources is required.
+END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:Violations of academic integrity
+DESCRIPTION:Immediate referral to the Honors Council, penalties range from negative score on an assignment or test, failing the course, suspension, or expulsion.
+END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:Help and Support
+DESCRIPTION:Interactive Ed Discussion system, consult instructors and teaching assistants for one-on-one help, seek help early if needed, avoid cheating or excessive collaboration.
+END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:Accommodations for students with disabilities
+DESCRIPTION:Offered by Emory University, students anticipating issues can discuss with instructors and register with the Department of Accessibility Services.
+END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:Academic accommodations for religious observance
+DESCRIPTION:Students should submit requests early, contact Office of Spiritual and Religious Life, Ombuds Office, or Office of Institutional Equity and Compliance for concerns, responsibilities for completion of coursework still remain.
+END:VEVENT
+
+END:VCALENDAR
+```
