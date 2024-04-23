@@ -1,14 +1,19 @@
 
 // Component for previewing calendar events from .ics
-// TODO: add an edit or delete button
 import React from 'react';
 import {parseIcsFile} from '../_utils/icsParser';
 import fs from 'fs';
 import { join } from 'path';
+import { cookies } from 'next/headers'; // this is for back-end cookie parsing
 
 const CalendarEvent = () => {
   // Call the icsParser class to parse the .ics file and get the event details
-  const filePath = join(process.cwd(), 'public', 'tmp', 'test1.ics');  // TODO: change this to your file path
+  const userId = cookies().get('userId').value;
+  if(!userId){
+    console.log("Error: CalendarEvent, no ics file found for user:", userId);
+    return;
+  }
+  const filePath = join(process.cwd(), 'src', 'app', 'api', 'upload', 'user_files', userId, 'eSyllabus.ics'); // this should be the correct path
   const calendarEvents = parseIcsFile(filePath); // Assuming parseICS File returns an array of event details
 
   return (

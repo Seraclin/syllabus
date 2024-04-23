@@ -13,20 +13,26 @@ export async function GET(request)  {
     const rootDir = process.cwd();
 
     // Construct the full file path
-    const filePath = join(rootDir, 'tmp', fileName);  // TODO change path accordingly to where your output file is located after generating
+    const filePath = join(rootDir, 'src', 'app', 'api', 'upload', 'user_files', userId, 'eSyllabus.ics'); // this should be the correct path
 
     try {
         // Read the file contents
         const fileContent = await readFile(filePath, 'utf-8');
+        if(!fileContent){
+            return NextResponse.json({ error: 'File not found error. Download API' }, { status: 404 });
+        }
+        const fileName = 'eSyllabus.ics';
 
         // Prepare the response with the file content
-        return NextResponse.ok(fileContent, {
+       return NextResponse.json(fileContent, {
+            status: 200,
             headers: {
-                'Content-Disposition': `attachment; filename="${fileName}"`,
+                'Content-Disposition': `attachment; filename="eSyllabus.ics"`, // Example file name
+                // Add any additional headers as needed like 'Content-Type', 'text/calendar' to specify .ics type
             },
         });
     } catch (error) {
         console.error('Error downloading file:', error);
-        return NextResponse.error('File not found', { status: 404 });
+        return NextResponse.json({ error: 'Internal server error. Download API' }, { status: 500 });
     }
 }

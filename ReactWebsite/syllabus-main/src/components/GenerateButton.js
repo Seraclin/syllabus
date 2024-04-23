@@ -10,7 +10,8 @@ import path from 'path';
 
 
 const GenerateButton = () => {
-    const [hasPressed, setStatus] = useState(false) // check if user has pressed this button for the first time, true = show Download button
+    const [hasPressed, setStatus] = useState(false);  // TODO: change this to 'true' to display download button all the time
+    // check if user has pressed this button for the first time, true = show Download button
     let userId = Cookies.get('userId');
 
     function generate(){

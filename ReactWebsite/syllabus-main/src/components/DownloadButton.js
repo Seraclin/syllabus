@@ -1,9 +1,10 @@
 // TODO change file path accordingly to userId and use API call instead, 
 // TODO also might want to make this a client component if you want to have React useState
-const DownloadButton = ({ userId }) => {  // you probably don't need this prop if you always include credentials in the HTTP request
-    function download(userId){
+import Cookies from "js-cookie";
+const DownloadButton = () => {  // you probably don't need this prop if you always include credentials in the HTTP request
+    function download(){
         // TODO: Download ics file based on the userId
-        // const userId = Cookies.get('userId');
+        let userId = Cookies.get('userId');
         fetch(`/api/download`, {
           method: 'GET',
           credentials: 'include',
@@ -11,16 +12,27 @@ const DownloadButton = ({ userId }) => {  // you probably don't need this prop i
             'Content-Type': 'application/json',
           }
         })
-          .then(response => {
+          .then(async(response) => {
             if (!response.ok) {
                 // HTTP request not OK
                 throw new Error('Network response was not ok');
             }
             // TODO: do something here if request is successful, probably want to parse request fields for the output file
-
             // Location of download file will be at
             // '..\\app\\api\\upload\\user_files\\' + userId + '\\eSyllabus.ics'
-            
+            // Trigger download by creating an anchor element
+            const blob = await response.blob();
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'eSyllabus.ics';
+            document.body.appendChild(a);
+            a.click();
+
+            // cleanup after download
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url); 
+            console.log("Downloaded ics file successfully for user:", userId);           
           })
           .catch(error => {
             // Error messages if the request itself wasn't successful
@@ -32,7 +44,7 @@ const DownloadButton = ({ userId }) => {  // you probably don't need this prop i
   
     return (
         <div className="download-container">
-            <button type='button' className="generate-button" onClick={() => download(userId)}>Download file</button>
+            <button type='button' className="generate-button" onClick={() => download()}>Download file</button>
         </div>
     );
   };

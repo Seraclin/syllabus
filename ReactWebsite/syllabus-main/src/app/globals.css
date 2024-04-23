@@ -1,23 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@200..800&display=swap'); /* Import Google fonts: https://fonts.google.com/selection/embed */
+
 /* Custom CSS for whole website goes below */
-/* Custom CSS for the entire website goes below */
 :root {
-  --font-primary: 'Severin Meyer', sans-serif; /* Ensuring Severin Meyer is the primary font */
-  --spacing: 1rem;
+  --font-primary: 'Oxanium', sans-serif; /* Ensuring Oxanium is the primary font */
+  /* --spacing: 1rem; */ /* Note from Sam - this causes the title bar to look cutoff on the left side */
 }
 
 html, body {
   margin: 0;
   padding: var(--spacing);
-  font-family: 'Severin Meyer', sans-serif;
+  font-family: 'Oxanium', sans-serif;
   background-color: #f4f4f4;
 }
 p {
-  margin: 0px 1rem;
+  margin: 5px 1rem;
   line-height: 1.6;
   text-align: center; /* Centering text */
 }
 .roboto-condensed-title {
-  font-family: 'Severin Meyer', sans-serif;
+  font-family: 'Oxanium', sans-serif;
   font-optical-sizing: auto;
   font-weight: 700; /* Bold */
   font-style: normal;
@@ -28,18 +29,22 @@ p {
   display: flex;
   justify-content: center; /* Center content horizontally */
   align-items: center; /* Align items vertically in the center */
-  width: 100%; /* Ensure the bar takes full width */
+  /* width: 100%; Don't use this since it causes the screen to overflow */
   background-color: #7a6ff0;
   color: white;
   padding: 1rem 2rem;
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-  font-family: var(--font-primary); /* Apply Severin Meyer font */
+  font-family: var(--font-primary); /* Note from Sam: the font is called Oxanium */
+  margin-bottom: 15px;
+
 }
 
 
 .title-container {
   text-align: center; /* Center the text within its container */
+  position:absolute; /* Makes title text centered relative to the page itself rather than the div */
   width: 100%; /* Ensure the container takes full width */
+  font-size: 1.7rem;
 }
 
 .right-links {
@@ -196,7 +201,7 @@ input[type="submit"]:hover {
 
 /* For dispaying files in a list */
 .user-filelist{
-  text-align: center;
+  text-align: left;
   margin-left: 1rem;
 }
 
@@ -205,6 +210,7 @@ input[type="submit"]:hover {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 2rem 1rem;
 }
 
 .generate-button {
