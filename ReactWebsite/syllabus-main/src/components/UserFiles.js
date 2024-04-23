@@ -71,9 +71,13 @@ export default function UserFilesList() {
       <h2>Uploaded Files:</h2>
       <ul>
         {userFiles.map((fileName, index) => (
-          <li key={index}>{fileName}
-          <button type='button' onClick={() => removeFile(fileName)} style={{ marginLeft: '8px' }}>Remove</button>
-          </li>
+          // Ignore .ics files from user file list
+          !fileName.endsWith('.ics') && (
+            <li key={index}>
+              {fileName}
+              <button type='button' onClick={() => removeFile(fileName)} style={{ marginLeft: '8px' }}>Remove</button>
+            </li>
+          )
         ))}
       </ul>
     </div>
