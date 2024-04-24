@@ -12,34 +12,32 @@ export default async function Home() {
   return (
     <>
       <header className="title-bar">
-        <img src="/eSyllabus.png" style={{height: '100px', width:'100px'}}></img>
-        <div className="title-container">
+        <div className="title-flex-container">
+          <img src="/eSyllabus.png"></img>
           <h1 className='title-bar-text'>eSyllabus</h1>
-        </div>
-        <div className="right-links">
-          <a href="https://github.com/Seraclin/syllabus" style={{ marginRight: '1rem' }}>About</a>
-          {session ? (
-            <>
-              <p>
-                Logged in as {session.newUser.name}
-                {/* {JSON.stringify(session)} */}
-              </p>
-              <form
-        action={async () => {
-          "use server";
-          await logout();
-          redirect("/");
-        }}
-      >
-        <button type="submit">Logout</button>
-      </form>
-            </>
-          ) : (
-            <>
-              <a href='/login' style={{ marginRight: '1rem' }}>Login</a>
-              <a href='/signup' style={{ marginRight: '1rem' }}>Signup</a>
-            </>
-          )}
+          <div className="right-links">
+            <a href="https://github.com/Seraclin/syllabus" style={{ marginRight: '1rem' }}>About</a>
+            <a href="https://forms.gle/hTtoYtwpizd8zGLH7" style={{ marginRight: '1rem' }}>Feedback</a>
+            {session ? (
+              <>
+                <p>
+                  Logged in as {session.newUser.name}
+                  {/* {JSON.stringify(session)} */}
+                </p>
+                <form action={async () => {
+                  "use server";
+                  await logout();
+                  redirect("/");}}>
+                  <button type="submit">Logout</button>
+                </form>
+              </>
+            ) : (
+              <>
+                <a href='/login' style={{ marginRight: '1rem' }}>Login</a>
+                <a href='/signup' style={{ marginRight: '1rem' }}>Signup</a>
+              </>
+            )}
+          </div>
         </div>
       </header>
       <p>Please upload a PDF to get started.</p>

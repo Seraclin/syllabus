@@ -17,6 +17,16 @@ p {
   line-height: 1.6;
   text-align: center; /* Centering text */
 }
+
+a {
+  color: white;
+}
+
+a:hover {
+  color: purple;
+}
+
+/* Title bar related CSS */
 .roboto-condensed-title {
   font-family: 'Oxanium', sans-serif;
   font-optical-sizing: auto;
@@ -26,29 +36,47 @@ p {
 }
 
 .title-bar {
-  display: flex;
-  justify-content: center; /* Center content horizontally */
-  align-items: center; /* Align items vertically in the center */
+  /* this is the title box itself and has the background color */
   /* width: 100%; Don't use this since it causes the screen to overflow */
-  background-color: #7a6ff0;
+  background-color: #2330A2;
   color: white;
-  padding: 1rem 2rem;
+  padding: 1rem;
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
   font-family: var(--font-primary); /* Note from Sam: the font is called Oxanium */
   margin-bottom: 15px;
-
 }
 
+.title-flex-container {
+  /* this is for displaying items in a flex layout within the parent title-bar */
+  display: flex;
+  justify-content: space-between; /* Center content horizontally */
+  align-items: center; /* Align items vertically in the center */
+  flex-wrap: wrap; /* Wrap flex items if the width shrinks */
+  row-gap: 10px;
+  position: relative;
+}
 
-.title-container {
-  text-align: center; /* Center the text within its container */
-  position:absolute; /* Makes title text centered relative to the page itself rather than the div */
-  width: 100%; /* Ensure the container takes full width */
-  font-size: 1.7rem;
+.title-bar img {
+  width: 100px;
+  height: 120px;
+  margin: 0;
+  margin-right: 52%;
+}
+
+.title-bar-text {
+  font-size: 4rem;
+  margin: 0;
+  /* Centered absolutely for good this time relative to the page. This ignores flex */
+  position: absolute;
+  text-align: center; 
+  align-self: center;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .right-links {
-  margin-left: auto; /* Push the links to the rightmost side */
+  margin-left: 1rem; /* Note from Sam fixed flex to not have this set to auto */
+  font-size: 1.2rem;
 }
 
 /* Upload button */
@@ -85,7 +113,7 @@ input[type="submit"]:hover {
 }
 
 .custom-file-upload {
-  background-color: #5e42a6;
+  background-color: #2330A2;
   color: white;
   padding: 12px 24px;
   border: none;
@@ -95,7 +123,7 @@ input[type="submit"]:hover {
 }
 
 .custom-file-upload:hover {
-  background-color: #4d359a;
+  background-color: #2330A2;
 }
 
 /* Upload progress */
@@ -125,7 +153,7 @@ input[type="submit"]:hover {
 
 .upload-progress-bar-indicator {
   height: 100%; 
-  background-color: #5e42a6; 
+  background-color: #2330A2; 
   transition: width 0.4s ease;
 }
 
@@ -214,7 +242,7 @@ input[type="submit"]:hover {
 }
 
 .generate-button {
-  background-color: #5e42a6;
+  background-color: #2330A2;
   border: none;
   color: white;
   padding: 15px 30px;
