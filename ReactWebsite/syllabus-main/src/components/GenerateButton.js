@@ -10,7 +10,7 @@ import path from 'path';
 
 
 const GenerateButton = () => {
-    const [hasPressed, setStatus] = useState(false);  // TODO: change this to 'true' to display download button all the time
+    const [hasPressed, setStatus] = useState(true);  // TODO: change this to 'true' to display download button all the time
     // check if user has pressed this button for the first time, true = show Download button
     let userId = Cookies.get('userId');
 
@@ -37,21 +37,7 @@ const GenerateButton = () => {
                 throw new Error('Network response was not ok');
             }
             // TODO: do something here if request is successful
-
-            // const { exec } = require('child_process');
-            // Figure out how to parse in the user id
-            // exec('python createSyllabus.py', (error, stdout, stderr) => {
-            //     if (error) {
-            //         console.error(`exec error: ${error}`);
-            //         return;
-            //     }
-            //     console.log(`stdout: ${stdout}`);
-            //     console.error(`stderr: ${stderr}`);
-            // });
-
-            // const spawn = require("child_process").spawn;
-            // const pythonProcess = spawn('python',["createSyllabus.py", arg1]);
-
+            window.location.reload(); // Reload the page to refresh the calendar preview component
 
             // Generate .ics file from user's current folder
             setStatus(true); // this makes the download button appear if true
