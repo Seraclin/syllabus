@@ -1,7 +1,6 @@
 // Helper function to parse .ics files for preview --> start/end date, title, description, location
 // Ideally to be called by some kind of CalendarEvent component
 
-import { subscribe } from 'diagnostics_channel';
 import fs from 'fs';
 import { join } from 'path';
 
