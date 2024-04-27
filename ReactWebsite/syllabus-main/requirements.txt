@@ -1,0 +1,8 @@
+fitz
+pandas
+numpy
+matplotlib.pyplot
+os
+sys
+load_dotenv
+OpenAI

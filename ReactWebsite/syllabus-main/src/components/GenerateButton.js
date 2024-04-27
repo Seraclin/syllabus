@@ -10,8 +10,7 @@ import path from 'path';
 
 
 const GenerateButton = () => {
-    const [hasPressed, setStatus] = useState(false);  // TODO: change this to 'true' to display download button all the time
-    // check if user has pressed this button for the first time, true = show Download button
+    const [hasPressed, setStatus] = useState(true); // check if user has pressed this button for the first time, true = show Download button
     let userId = Cookies.get('userId');
 
     function generate(){
@@ -33,24 +32,16 @@ const GenerateButton = () => {
           .then(response => {
             if (!response.ok) {
                 // HTTP request not OK
-                setStatus(false);
+                setStatus(true);
                 throw new Error('Network response was not ok');
             }
             // TODO: do something here if request is successful
 
-            // const { exec } = require('child_process');
-            // Figure out how to parse in the user id
-            // exec('python createSyllabus.py', (error, stdout, stderr) => {
-            //     if (error) {
-            //         console.error(`exec error: ${error}`);
-            //         return;
-            //     }
-            //     console.log(`stdout: ${stdout}`);
-            //     console.error(`stderr: ${stderr}`);
-            // });
 
-            // const spawn = require("child_process").spawn;
-            // const pythonProcess = spawn('python',["createSyllabus.py", arg1]);
+
+            // Call API
+
+
 
 
             // Generate .ics file from user's current folder
@@ -60,7 +51,7 @@ const GenerateButton = () => {
           .catch(error => {
             // Error messages if the request itself wasn't successful
             console.error('Error generating file:', error);
-            setStatus(false);
+            setStatus(true);
             alert("Error: generating file. Please try again.");
           });
     }

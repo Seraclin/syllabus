@@ -28,6 +28,7 @@ export async function GET(request)  {
             status: 200,
             headers: {
                 'Content-Disposition': `attachment; filename="eSyllabus.ics"`, // Example file name
+                'Content-Type': 'text/calendar',
                 // Add any additional headers as needed like 'Content-Type', 'text/calendar' to specify .ics type
             },
         });

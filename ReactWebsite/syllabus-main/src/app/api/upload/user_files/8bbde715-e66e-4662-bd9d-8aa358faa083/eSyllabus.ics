@@ -1,0 +1,89 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20240118
+SUMMARY:Introduction
+DESCRIPTION:A day dedicated to introducing the course material -||- Homework
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20240123
+SUMMARY:Xinhua News Agency - Covid-19
+DESCRIPTION:Discussion on the organizational response to the COVID-19 crisis in China -||- Assessment
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20240125
+SUMMARY:Party, Control, Digitalization
+DESCRIPTION:Analysis of Chinese newspaper groups and the influence of the party in the digital era -||- Assessment
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20240130
+SUMMARY:Framing Theory International news Content analysis
+DESCRIPTION:Examination of how international news is framed in Chinese newspapers -||- Assessment
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20240201
+SUMMARY:TA session Content analysis research
+DESCRIPTION:Tutorial session on conducting content analysis research related to Group Project 1 -||- Homework
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20240206
+SUMMARY:Group Presentation I
+DESCRIPTION:Presentation by groups on a specific topic -||- Assessment
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20240208
+SUMMARY:News Group Project
+DESCRIPTION:A group project analyzing American media coverage of China using content analysis. A 3 or 4-slide PowerPoint presentation is required. All group members receive the same grade
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20240208
+SUMMARY:Group Presentation II
+DESCRIPTION:Second round of group presentations -||- Assessment
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20240213
+SUMMARY:Drama & Film - Gold Periods; Yang Ban Xi
+DESCRIPTION:Exploration of state control and the Chinese model opera in the context of communism -||- Assessment
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20240226
+SUMMARY:Film Individual Project
+DESCRIPTION:Students are required to choose one or two scenes from a film and analyze the relationship between story elements, language of film, and society. This is an individual project worth 12% of the grade
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20240226
+SUMMARY:Film Reaction Paper Due
+DESCRIPTION:Submitting a film reaction paper as part of Sociology assessment
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20240312
+SUMMARY:No Class, Spring Break
+DESCRIPTION:No classes scheduled for Spring Break -||- Type: Event
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20240314
+SUMMARY:No Class, Spring Break
+DESCRIPTION:No classes scheduled for Spring Break -||- Type: Event
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20240319
+SUMMARY:Dynasty TV - Homework
+DESCRIPTION:Chinese dynasty TV drama as political discourse -||- Type: Homework
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20240321
+SUMMARY:Idol Drama, Danmei, Time travel - Homework
+DESCRIPTION:Analysis of TV drama "Word of Honor" and brand homonationalism -||- Type: Homework
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20240326
+SUMMARY:Internet - Homework
+DESCRIPTION:Review of 20 years of Internet development in China -||- Type: Homework
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20240328
+SUMMARY:WeChat - Homework
+DESCRIPTION:Study on WeChat as infrastructure shaping Chinese digital platforms -||- Type: Homework
+END:VEVENT
+END:VCALENDAR

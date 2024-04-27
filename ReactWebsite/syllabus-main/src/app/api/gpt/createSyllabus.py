@@ -9,6 +9,7 @@ import os
 import sys
 from dotenv import load_dotenv
 
+
 from openai import OpenAI
 
 
@@ -249,9 +250,9 @@ def run_gpt(csv_string):
     print("DONE")
 
 def is_pdf(file_path):
-    with open(file_path, 'rb') as f:
-        header = f.read(4)
-    return header == b'%PDF'
+    if(file_path.endswith('.pdf')):
+        return True
+    return False
 
 # newer implementation of GPT
 def run_gpt_broad(pdf_path, output):
@@ -285,8 +286,8 @@ def run_gpt_broad(pdf_path, output):
 
     for file in os.listdir(pdf_path):
         print("Running GPT for File: " + file)
-        if not is_pdf(file): continue
-        file_text = parse_pdf_as_text(pdf_path)
+        if not is_pdf(pdf_path + "\\" + file): continue
+        file_text = parse_pdf_as_text(pdf_path + "\\" + file)
         for page in file_text:
             completion = client.chat.completions.create(
             model="gpt-3.5-turbo",
@@ -300,8 +301,8 @@ def run_gpt_broad(pdf_path, output):
             ]
             )
             parsed_events.append(completion.choices[0].message.content)
-            print(completion.choices[0].message.content)
-            print("=====Space=====")
+            # print(completion.choices[0].message.content)
+            # print("=====Space=====")
 
     # Need to parse entire PDF into a str while not exceeding the limits of OpenAI
 
@@ -310,10 +311,14 @@ def run_gpt_broad(pdf_path, output):
     completion = client.chat.completions.create(
       model="gpt-3.5-turbo",
       messages=[
-        {"role": "system", "content": "Convert the data provided into an ics file using the information provided in the current year of 2024 resulting in non repeating events"},
+        {"role": "system", "content": "Convert the data provided into an ics file. The ics file includes CALSCALE: GREGORIAN, SUMMARY:, and DTSTART;VALUE=DATE: in the year 2024. Make sure the file is not corrupted when generated"},
         {"role": "user", "content": "" + ''.join(parsed_events)}
       ]
     )
+    if os.path.exists(pdf_path + '\\' + str(output) + ".ics"):
+        print("ics file detected, deleting file")
+        os.remove(pdf_path + '\\' + str(output) + ".ics")
+
     gpt_output = open(pdf_path + '\\' + str(output) + ".ics", "w")
     gpt_output.writelines(completion.choices[0].message.content)
     gpt_output.close()
@@ -326,20 +331,22 @@ def run_gpt_broad(pdf_path, output):
 if __name__ == '__main__':
     load_dotenv()
     
-    pdf_path = '..\\app\\api\\upload\\user_files\\' + sys.argv[1]
+    pdf_path = '..\\upload\\user_files\\' + sys.argv[1]
     print("Path to folder is: " + pdf_path)
     
     print("Files that will be consolidated: ")
     n = 0
     for file in os.listdir(pdf_path):
-        if is_pdf(file): n += 1
+        if is_pdf(file):
+            n += 1
         print(file)
 
     print("pdf path = " + pdf_path)
     if n != 0: 
-        if (input('Are you sure you want to run GPT? y to confirm, literally anything else to cancel ') == 'y'):
-            run_gpt_broad(pdf_path, "eSyllabus")
-    print("Process has ended with " + n + " syllabi being consolidated")
+        # print("n = " + str(n))
+        # if (input('Are you sure you want to run GPT? y to confirm, literally anything else to cancel ') == 'y'):
+        run_gpt_broad(pdf_path, "eSyllabus")
+    print("Process has ended with " + str(n) + " syllabi being consolidated")
 
 
 

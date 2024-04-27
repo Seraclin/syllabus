@@ -1,33 +1,35 @@
 BEGIN:VCALENDAR
 VERSION:2.0
-PRODID:-//Chimbori//CSV to iCal Convertor// https://csv-to-ical.chimbori.com/ //EN
+PRODID:-//To-Do List//iCal4j 1.0//EN
 CALSCALE:GREGORIAN
-X-WR-CALNAME;VALUE=TEXT:sample
 BEGIN:VEVENT
-SUMMARY:My important event
-DTSTAMP:20120419T180000
-DESCRIPTION:Longer Description
-DTSTART:20120419T180000
-DTEND:20120419T210000
-LOCATION:San Francisco CA
-UID:abcdefghij@google.com
+SUMMARY:Chinese Media and Society
+DTSTART;VALUE=DATE:20240201
+DESCRIPTION:This course introduces students to contemporary Chinese media and entertainment industry, focusing on the development of Chinese media industry since 1978. The course will cover a range of Chinese media platforms including newspapers, film, radio, TV, online media channels, and social media. It will analyze specific cases to understand the dynamic relationship between society, media industry, culture, and media content in the globalized environment.
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:An all-day event
-DTSTAMP:20120419T000000
-DESCRIPTION:Missing times are OK
-DTSTART;VALUE=DATE:20120419
-DTEND;VALUE=DATE:20120419
-LOCATION:New York NY
-UID:klmnopqrst@yahoo.com
+SUMMARY:News Group Project
+DTSTART;VALUE=DATE:20240208
+DESCRIPTION:Systematic analysis of American media coverage of China using content analysis and presenting findings through a PowerPoint presentation.
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:A multi-day event
-DTSTAMP:20120419T180000
-DESCRIPTION:Start date and end date are different
-DTSTART:20120419T180000
-DTEND:20120420T180000
-LOCATION:Las Vegas NV
-UID:uvwxyz@outlook.com
+SUMMARY:Film Individual Project
+DTSTART;VALUE=DATE:20240226
+DESCRIPTION:Students are required to choose one or two scenes from a film, analyze the relationship between story elements, language of film, and society, and submit a reaction paper.
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:TV Individual Project
+DTSTART;VALUE=DATE:20240322
+DESCRIPTION:Details to be distributed in class for this project due on 3/22 at 10:00 pm.
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Internet Group Project
+DTSTART;VALUE=DATE:20240410
+DESCRIPTION:Students need to analyze a media company or a particular time of a media company, identifying strengths, weaknesses, opportunities, and threats. Only a PowerPoint presentation is required.
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Advertisement Individual Project
+DTSTART;VALUE=DATE:20240428
+DESCRIPTION:Students are to study how the U.S. and China advertise the same products in a one-page assignment. Details to be announced later for this project due on 4/28 at 10:00 pm.
 END:VEVENT
 END:VCALENDAR
