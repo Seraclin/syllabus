@@ -9,19 +9,20 @@ const DownloadButton = () => {  // you probably don't need this prop if you alwa
           method: 'GET',
           credentials: 'include',
           headers: {
-            'Content-Type': 'application/json',
+            // 'Content-Type': 'text/calendar',
           }
         })
           .then(async(response) => {
             if (!response.ok) {
-                // HTTP request not OK
-                throw new Error('Network response was not ok');
+              // HTTP request not OK
+              throw new Error('Network response was not ok');
             }
-            // TODO: do something here if request is successful, probably want to parse request fields for the output file
+            // Do something here if request is successful, probably want to parse request fields for the output file
             // Location of download file will be at
             // '..\\app\\api\\upload\\user_files\\' + userId + '\\eSyllabus.ics'
             // Trigger download by creating an anchor element
             const blob = await response.blob();
+            
             const url = window.URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
