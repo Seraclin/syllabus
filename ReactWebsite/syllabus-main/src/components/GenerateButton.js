@@ -64,7 +64,7 @@ const GenerateButton = () => {
             </div>
             <div>
               {hasPressed ? (
-                  isLoading ? (<p>Loading...(this may take a few minutes)</p>) : (<DownloadButton userId={userId} />)
+                  isLoading ? (<p>(this may take a few minutes)</p>) : (<DownloadButton userId={userId} />)
                 ) : (
                 <p>Press "Generate" to start</p>
               )}

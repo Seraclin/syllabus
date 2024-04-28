@@ -45,7 +45,7 @@ const DownloadButton = () => {  // you probably don't need this prop if you alwa
   
     return (
         <div className="download-container">
-            <button type='button' className="generate-button" onClick={() => download()}>Download file</button>
+            <button type='button' className="generate-button" onClick={() => download()}>Download .ics</button>
         </div>
     );
   };

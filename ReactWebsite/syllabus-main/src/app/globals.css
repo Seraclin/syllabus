@@ -99,7 +99,7 @@ input[type="file"] {
 input[type=submit] {
   background-color: #4CAF50;
   color: white;
-  font-size: 16px;
+  font-size: 20px;
   padding: 12px 24px;
   border: none;
   border-radius: 5px;
@@ -219,6 +219,8 @@ input[type="submit"]:hover {
   flex-direction: column;
   width: 300px; /* Adjust as needed */
   min-width: 200px;
+  margin: 0px 10px;
+
 }
 
 .ad-container img {
