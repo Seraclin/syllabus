@@ -3,10 +3,12 @@ import { writeFile, mkdir, access } from 'fs/promises'
 import { NextRequest, NextResponse } from "next/server";
 import { extname, join } from 'path';
 import { cookies } from 'next/headers';
-import crypto from 'crypto';
 
 
 export async function POST(request) {
+    // Import the built-in crypto module
+    const crypto = require('crypto');
+    
     // This basically does the same as the previous server implementation but instead via HTTP
     const data = await request.formData();
     const files = data.getAll('file'); // get all files from input
