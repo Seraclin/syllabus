@@ -11,6 +11,7 @@ import path from 'path';
 
 const GenerateButton = () => {
     const [hasPressed, setStatus] = useState(true);  // TODO: change this to 'true' to display download button all the time
+    const [isLoading, setLoading] = useState(false); // track if generation is still loading; true = still loading
     // check if user has pressed this button for the first time, true = show Download button
     let userId = Cookies.get('userId');
 
@@ -21,7 +22,7 @@ const GenerateButton = () => {
             alert("Error: No files provided. Please upload some files first");
             return;
       }
-
+        setLoading(true); // start loading process
         // TODO: Generate ics file via API call, you probably should add some input checking in your API just in case. You probably don't need the userId parameter if you pass in the credientials via the request
         fetch(`/api/gpt`, {
           method: 'GET',
@@ -33,20 +34,20 @@ const GenerateButton = () => {
           .then(response => {
             if (!response.ok) {
                 // HTTP request not OK
-                setStatus(true);
-                throw new Error('Network response was not ok');
+                setStatus(false);
+                setLoading(false);
+                throw new Error('Error: generating file. Network response was not ok');
             }
             // TODO: do something here if request is successful
             window.location.reload(); // Reload the page to refresh the calendar preview component
-
-            // Generate .ics file from user's current folder
+            setLoading(false); // Done loading
             setStatus(true); // this makes the download button appear if true
-            
           })
           .catch(error => {
             // Error messages if the request itself wasn't successful
             console.error('Error generating file:', error);
-            setStatus(true);
+            setStatus(false);
+            setLoading(false);
             alert("Error: generating file. Please try again.");
           });
     }
@@ -54,10 +55,19 @@ const GenerateButton = () => {
     return (
         <div className="generate-container">
             <div>
-                <button type='button' className="generate-button" onClick={() => generate()}>Generate</button>
+              {isLoading ? (
+                <button type='button' className="generate-button" disabled>Loading</button>)
+                :(
+                  <button type='button' className="generate-button" onClick={() => generate()}>Generate</button>                  
+                )
+              }
             </div>
             <div>
-                {hasPressed ? <DownloadButton userId={userId}></DownloadButton> : <p>Press "Generate" to process your files</p>}
+              {hasPressed ? (
+                  isLoading ? (<p>Loading...(this may take a few minutes)</p>) : (<DownloadButton userId={userId} />)
+                ) : (
+                <p>Press "Generate" to start</p>
+              )}
             </div>
         </div>
     );

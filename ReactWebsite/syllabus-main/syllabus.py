@@ -88,10 +88,8 @@ def run_gpt_broad(pdf_path, output):
             model="gpt-3.5-turbo",
             messages=[
                 {"role": "system", "content": "Extract the dates and events mentioned in the article. First extract the date, then extract the name of the event, and finally set a description of the event while also mentioning if the event is either a Homework, Assessment or Event. "
-                "Desired format: "
-                "Date: -||- "
-                "Event Name: -||- "
-                "Description: -||- "},
+                "Output the results as a .csv file with the headers being 'Date', 'Event Name' and 'Description'"
+                },
                 {"role": "user", "content": "" + str(page)}
             ]
             )
@@ -106,7 +104,7 @@ def run_gpt_broad(pdf_path, output):
     completion = client.chat.completions.create(
       model="gpt-3.5-turbo",
       messages=[
-        {"role": "system", "content": "Convert the data provided into an ics file. The ics file includes CALSCALE: GREGORIAN, SUMMARY:, and DTSTART;VALUE=DATE: in the year 2024. Make sure the file is not corrupted when generated"},
+        {"role": "system", "content": "Convert the csv data provided into an ics file. The ics file includes CALSCALE: GREGORIAN, SUMMARY:, and DTSTART;VALUE=DATE: in the year 2024. Make sure the file is not corrupted when generated"},
         {"role": "user", "content": "" + ''.join(parsed_events)}
       ]
     )

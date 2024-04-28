@@ -14,7 +14,8 @@ export async function GET(request)  {
         const { spawnSync } = require('child_process');
         // Execute a command synchronously
         const result = spawnSync('python',["syllabus.py", userId]);
-                // Check for errors
+        // result.stderr.pipe(process.stdout)
+        // Check for errors
         if (result.error) {
           console.error('Error:', result.error);
           return NextResponse.json({ error: 'Internal server error. GPT API' }, { status: 500 });
