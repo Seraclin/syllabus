@@ -264,6 +264,22 @@ input[type="submit"]:hover {
   background-color: #111363;
 }
 
+/* About Page Styling */
+.about-container {
+  padding: 2rem;
+  text-align: center;
+}
+
+.about-title {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.about-text {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
 /* Login Page Styling */
 .login-container {
   display: flex;
@@ -303,27 +319,10 @@ input[type="submit"]:hover {
   background-color: #4d359a;
 }
 
-/* About Page Styling */
-.about-container {
-  padding: 2rem;
-  text-align: center;
-}
-
-.about-title {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-}
-
-.about-text {
-  font-size: 1rem;
-  line-height: 1.5;
-}
-
-
-
+/* duplicate login styling? */
 .login-section {
   max-width: 400px;
-  margin: 0 auto;
+  margin: 1.5rem auto;
   padding: 20px;
   background-color: #ffffff; /* Adjust color as needed */
   border-radius: 8px;
@@ -333,6 +332,7 @@ input[type="submit"]:hover {
 .login-form {
   display: flex;
   flex-direction: column;
+  margin-bottom: 30px;
 }
 
 .login-form input {
@@ -359,7 +359,7 @@ input[type="submit"]:hover {
 /* Add styles for sign-up page */
 .signup-section {
   max-width: 400px;
-  margin: 0 auto;
+  margin: 1.5rem auto;
   padding: 20px;
   background-color: #ffffff; /* Adjust color as needed */
   border-radius: 8px;
@@ -369,6 +369,7 @@ input[type="submit"]:hover {
 .signup-form {
   display: flex;
   flex-direction: column;
+  margin-bottom: 20px;
 }
 
 .signup-form input {
@@ -389,4 +390,19 @@ input[type="submit"]:hover {
 
 .signup-form button:hover {
   background-color: #0056b3; /* Adjust color as needed */
+}
+
+/* for navigating back to the home page or elsewhere */
+.nav-link { 
+  margin: 5px 0px;
+  text-align: left;
+  color: blue;
+}
+
+.nav-link a { 
+  color: blue;
+  font-size: 15px;
+}
+.nav-link a:hover {
+  color: #8409d6; /* Adjust color as needed */
 }

@@ -1,47 +1,17 @@
 /* The Homepage, view locally with npm run dev, delete .next folder locally if not working */
 import UploadButton from "@/components/UploadButton"
-import CalendarEvent from "@/components/CalendarEvent"  // TODO delete this
+import CalendarEvent from "@/components/CalendarEvent"
 import { getSession,logout } from "@/_utils/lib";
 import { redirect } from "next/navigation";
 import UserFilesList from "@/components/UserFiles";
 import GenerateButton from "@/components/GenerateButton";
+import HeaderBar from "@/components/HeaderBar";
 
 
 export default async function Home() {
-  const session = await getSession();
   return (
     <>
-      <header className="title-bar">
-        <div className="title-flex-container">
-          <img src="/eSyllabus.png"></img>
-          <h1 className='title-bar-text'>eSyllabus</h1>
-          <div className="right-links">
-            <a href="https://github.com/Seraclin/syllabus" style={{ marginRight: '1rem' }}>About</a>
-            <a href="https://forms.gle/hTtoYtwpizd8zGLH7" style={{ marginRight: '1rem' }}>Feedback</a>
-            {session ? (
-              <>
-                <p>
-                  {/* Logged in as {session.user.name} */}
-                  Logged in as {session.newUser ? session.newUser.name : session.user.name}
-
-                  {/* {JSON.stringify(session)} */}
-                </p>
-                <form action={async () => {
-                  "use server";
-                  await logout();
-                  redirect("/");}}>
-                  <button type="submit">Logout</button>
-                </form>
-              </>
-            ) : (
-              <>
-                <a href='/login' style={{ marginRight: '1rem' }}>Login</a>
-                <a href='/signup' style={{ marginRight: '1rem' }}>Signup</a>
-              </>
-            )}
-          </div>
-        </div>
-      </header>
+      <HeaderBar></HeaderBar>
       <p>Please upload a PDF to get started.</p>
       <div>
         <UploadButton />
