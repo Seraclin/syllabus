@@ -21,7 +21,9 @@ export default async function Home() {
             {session ? (
               <>
                 <p>
-                  Logged in as {session.newUser.name}
+                  {/* Logged in as {session.user.name} */}
+                  Logged in as {session.newUser ? session.newUser.name : session.user.name}
+
                   {/* {JSON.stringify(session)} */}
                 </p>
                 <form action={async () => {
