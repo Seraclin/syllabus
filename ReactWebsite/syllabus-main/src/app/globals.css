@@ -318,3 +318,39 @@ input[type="submit"]:hover {
   font-size: 1rem;
   line-height: 1.5;
 }
+
+
+
+.login-section {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff; /* Adjust color as needed */
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-form input {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #cccccc; /* Adjust color as needed */
+  border-radius: 4px;
+}
+
+.login-form button {
+  padding: 10px 20px;
+  background-color: #007bff; /* Adjust color as needed */
+  color: #ffffff; /* Adjust color as needed */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.login-form button:hover {
+  background-color: #0056b3; /* Adjust color as needed */
+}
