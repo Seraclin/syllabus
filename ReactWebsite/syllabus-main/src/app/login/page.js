@@ -7,6 +7,7 @@ export default async function Page() {
     <section className="login-section">
       <h1>Login</h1>
       <form
+        className="login-form"
         action={async (formData) => {
           "use server";
           const newResult = await login(formData);
@@ -14,16 +15,15 @@ export default async function Page() {
             redirect('/');
           } else{
              console.error("Login error:", newResult.error);
-
           }
         }}
       >
         <input type="email" placeholder="Email" name="email" id="email" />
-        <br />
         <input type="password" placeholder="Password" name="password" id="password" />
-        <br />
         <button type="submit">Login</button>
       </form>
     </section>
   );
 }
+
+
